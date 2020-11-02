@@ -1,8 +1,7 @@
 import { Display } from "./display.js"
 
-class Game {
-  constructor(){
-    const canvas = document.getElementById("myCanvas")
+export class Game {
+  constructor(canvas){
     this.display = new Display(canvas)
   }
 
@@ -10,8 +9,3 @@ class Game {
     this.display.draw()
   }
 }
-
-window.addEventListener("DOMContentLoaded", () => {
-  new Game().render()
-})
-
