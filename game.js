@@ -10,7 +10,7 @@ export class Game {
 
   render(){
     const colors = ["red", "blue", "green"]
-    this.display.draw(colors[0])
+    // this.display.draw()
     this.player.draw()
   }
 }

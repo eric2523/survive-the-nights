@@ -38,28 +38,31 @@ export class Player {
 
   moveLeft(){
     this.velocityX += this.velocity 
+    this.ctx.clearRect(this.xPos, this.yPos, this.width, (this.height));
     this.xPos -= this.velocity
   }
 
   moveRight(){
     this.velocityX += this.velocity
+    this.ctx.clearRect(this.xPos, this.yPos, this.width, (this.height));
     this.xPos += this.velocity
   }
 
   moveUp(){
     this.velocityY += this.velocity
+    this.ctx.clearRect(this.xPos, this.yPos, this.width, (this.height));
     this.yPos -= this.velocity
   }
 
   moveDown(){
     this.velocityY += this.velocity
+    this.ctx.clearRect(this.xPos, this.yPos, this.width, (this.height));
     this.yPos += this.velocity
   }
 
   draw(){
     this.checkBorderCollision()
     this.ctx.fillStyle = "blue"
-    // this.ctx.rect(0,0, 50, 50)
     this.ctx.fillRect(this.xPos, this.yPos, this.width, this.height)
   }
 }
