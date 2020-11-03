@@ -1,17 +1,13 @@
 import { Display } from "./display.js"
 
-class Game {
-  constructor(){
-    const canvas = document.getElementById("myCanvas")
+export class Game {
+  constructor(canvas){
     this.display = new Display(canvas)
+    this.render = this.render.bind(this)
   }
 
-  render(){
-    this.display.draw()
+  render(color){
+    const colors = ["red", "blue", "green"]
+    this.display.draw(colors[Math.floor(Math.random() * colors.length)])
   }
 }
-
-window.addEventListener("DOMContentLoaded", () => {
-  new Game().render()
-})
-

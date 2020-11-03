@@ -9,14 +9,14 @@ export class Display {
 
   // need to write funciton to dynamically create canvas size 
 
-  createBackground(ctx){
-    ctx.fillStyle = "red"
+  createBackground(ctx, color){
+    ctx.fillStyle = color
     ctx.rect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.fill()
   }
 
-  draw(){
-    this.createBackground(this.ctx)
+  draw(color){
+    this.createBackground(this.ctx, color)
     this.player.draw()
   }
 }
