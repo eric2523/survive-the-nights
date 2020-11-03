@@ -1,10 +1,7 @@
-import { Player } from "./player.js"
-
 export class Display {
   constructor(canvas){
     this.canvas = canvas
     this.ctx = canvas.getContext("2d")
-    this.player = new Player(canvas)
   }
 
   // need to write funciton to dynamically create canvas size 
@@ -17,7 +14,6 @@ export class Display {
 
   draw(color){
     this.createBackground(this.ctx, color)
-    this.player.draw()
   }
 }
 
