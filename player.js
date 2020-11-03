@@ -3,8 +3,8 @@ export class Player {
     this.canvas = canvas
     this.xPos = 0
     this.yPos = 0
-    this.width = 50;
-    this.height = 50;
+    this.width = 32;
+    this.height = 32;
     // velocity needs to be changed later based on canvas size or vice versa
     this.velocity = 15;
     // this.acceleration= 3;
