@@ -16,8 +16,8 @@ window.addEventListener("DOMContentLoaded", () => {
   // ctx.fillStyle = "black"
   // ctx.rect(0,0, 50, 50)
   // ctx.fillRect(0,0, 200, 200)
-  display.draw();
-  // engine.start();
+  // display.draw();
+  engine.start();
   
   window.addEventListener("keypress", () => {
     controls.handleKeyPress()
