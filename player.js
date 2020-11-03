@@ -6,7 +6,8 @@ export class Player {
     this.width = 50;
     this.height = 50;
     // velocity needs to be changed later based on canvas size or vice versa
-    this.velocity = 10;
+    this.velocity = 15;
+    // this.acceleration= 3;
     this.velocityX = 0;
     this.velocityY = 0;
     this.ctx = canvas.getContext("2d")
@@ -31,29 +32,28 @@ export class Player {
       this.yPos = 0
     } else if ((this.yPos + this.height) > this.canvas.height) {
       this.velocityY = 0
-      this.yPos = this.canvas.height - this.heights
+      this.yPos = this.canvas.height - this.height
     }
   }
 
-
   moveLeft(){
-    this.velocityX += this.velocity
-    this.xPos -= this.velocityX
+    this.velocityX += this.velocity 
+    this.xPos -= this.velocity
   }
 
   moveRight(){
     this.velocityX += this.velocity
-    this.xPos += this.velocityX
+    this.xPos += this.velocity
   }
 
   moveUp(){
     this.velocityY += this.velocity
-    this.yPos -= this.velocityY
+    this.yPos -= this.velocity
   }
 
   moveDown(){
     this.velocityY += this.velocity
-    this.yPos += this.velocityY
+    this.yPos += this.velocity
   }
 
   draw(){
