@@ -25,6 +25,14 @@ export class Player {
       this.velocityX -= this.velocity
       this.xPos = this.velocityX
     }
+
+    if (this.yPos <= 0){
+      this.velocityY = 0
+      this.yPos = this.velocityY
+    } else if ((this.yPos + this.height) > this.canvas.height) {
+      this.velocityY -= this.velocity
+      this.yPos = this.velocityY
+    }
   }
 
 
