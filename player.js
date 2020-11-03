@@ -22,38 +22,38 @@ export class Player {
       this.velocityX = 0
       this.xPos = 0
     } else if ((this.xPos + this.width) > this.canvas.width) {
-      this.velocityX -= this.velocity
-      this.xPos = this.velocityX
+      this.velocityX = 0
+      this.xPos = this.canvas.width - this.width
     }
 
     if (this.yPos <= 0){
       this.velocityY = 0
-      this.yPos = this.velocityY
+      this.yPos = 0
     } else if ((this.yPos + this.height) > this.canvas.height) {
-      this.velocityY -= this.velocity
-      this.yPos = this.velocityY
+      this.velocityY = 0
+      this.yPos = this.canvas.height - this.heights
     }
   }
 
 
   moveLeft(){
-    this.velocityX -= this.velocity
-    this.xPos = this.velocityX
+    this.velocityX += this.velocity
+    this.xPos -= this.velocityX
   }
 
   moveRight(){
     this.velocityX += this.velocity
-    this.xPos = this.velocityX
+    this.xPos += this.velocityX
   }
 
   moveUp(){
-    this.velocityY -= this.velocity
-    this.yPos = this.velocityY
+    this.velocityY += this.velocity
+    this.yPos -= this.velocityY
   }
 
   moveDown(){
     this.velocityY += this.velocity
-    this.yPos = this.velocityY
+    this.yPos += this.velocityY
   }
 
   draw(){
