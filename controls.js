@@ -1,21 +1,22 @@
 export class Controls {
-  constructor() {
+  constructor(game) {
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.game = game
   }
 
   handleKeyPress() {
     switch (event.keyCode) {
       case 115:
-        window.alert("s");
+        this.game.player.moveDown()
         break;
       case 119:
-        window.alert("w");
+        this.game.player.moveUp()
         break;
       case 97:
-        window.alert("a");
+        this.game.player.moveLeft()
         break;
       case 100:
-        window.alert("d");
+        this.game.player.moveRight()
         break;
       default:
         break;
