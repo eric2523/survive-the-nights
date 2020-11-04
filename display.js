@@ -1,13 +1,35 @@
 import { TileSheet } from "./tile-sheet.js"
-// import { jsonMap } from "./sprites/map-01.js"
-// import { map1 } from "./maps/01-map.js"
 import { mapbase1 } from "./maps/01-mapbase.js"
+import { Collideable } from "./collideables.js";
+
+let floorData = null;
+let collidables = []
+mapbase1.layers.forEach((layer) => {
+  if (layer.name === "floor"){
+    floorData = layer.data 
+  } else {
+    collidables.push(layer.data)
+  }
+})
+
+const image = new Image()
+image.src = "./maps/tileset_dungeon.png"
+
+const settings = {
+  tileSetColumns: mapbase1.tilesets[0].columns,
+  tileHeight: mapbase1.tilesets[0].tileheight,
+  tileWidth: mapbase1.tilesets[0].tilewidth,
+  mapWidth: mapbase1.width,
+  mapHeight: mapbase1.height,
+}
 
 export class Display {
-  constructor(canvas){
+  constructor(canvas, player){
     this.canvas = canvas
     this.ctx = canvas.getContext("2d")
-    this.tileSheet = new TileSheet(mapbase1, canvas);
+    this.player = player
+    this.tileSheet = new TileSheet(settings, canvas, floorData, image);
+    this.collidable =  new Collideable(settings, collidables, canvas, image, player)
     this.draw = this.draw.bind(this)
     this.createBackground = this.createBackground.bind(this)
   }
@@ -20,6 +42,8 @@ export class Display {
 
   draw(){
     this.createBackground()
+    this.collidable.checkCollisions()
+    this.collidable.mapCollidable()
   }
 }
 

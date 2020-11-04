@@ -1,8 +1,8 @@
 export class Player {
   constructor(canvas, defaultSettings){
     this.canvas = canvas
-    this.xPos = 0
-    this.yPos = 0
+    this.xPos = Math.floor(canvas.width / 2)
+    this.yPos = Math.floor(canvas.height / 2)
     this.width = 32;
     this.height = 32;
     // velocity needs to be changed later based on canvas size or vice versa
