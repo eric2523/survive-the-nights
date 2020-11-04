@@ -1,7 +1,8 @@
 export class Engine {
-  constructor(fps, render){
+  constructor(fps, render, update){
     this.fps = fps;
     this.render = render;
+    this.update = update
     this.time = null;
     this.accumulated_time = null;
     this.animationFrameRequest = null;

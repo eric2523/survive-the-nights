@@ -7,10 +7,11 @@ const canvas = document.getElementById("myCanvas")
 window.addEventListener("DOMContentLoaded", () => {
   // initialize game
   const game = new Game(canvas)
-  const controls = new Controls()
-  const engine = new Engine(60, game.render)
-
+  const controls = new Controls(game)
+  const engine = new Engine(60, game.render, game.update)
+  
   engine.start();
+  
   window.addEventListener("keypress", () => {
     controls.handleKeyPress()
   })
