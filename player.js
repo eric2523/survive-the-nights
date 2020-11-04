@@ -1,15 +1,17 @@
 export class Player {
   constructor(canvas, defaultSettings){
     this.canvas = canvas
-    this.xPos = Math.floor(canvas.width / 2)
-    this.yPos = Math.floor(canvas.height / 2)
+    this.xPos = 32
+    this.yPos = 32
     this.width = 32;
     this.height = 32;
     // velocity needs to be changed later based on canvas size or vice versa
-    this.velocity = 15;
+    this.velocity = 32;
     // this.acceleration= 3;
     this.velocityX = 0;
     this.velocityY = 0;
+    this.prevX = 32;
+    this.prevY = 32;
     this.ctx = canvas.getContext("2d")
     this.draw = this.draw.bind(this)
     this.moveLeft = this.moveLeft.bind(this)
@@ -61,6 +63,8 @@ export class Player {
   }
 
   draw(){
+    this.prevX = this.xPos
+    this.prevY = this.yPos
     this.checkBorderCollision()
     this.ctx.fillStyle = "blue"
     this.ctx.fillRect(this.xPos, this.yPos, this.width, this.height)
