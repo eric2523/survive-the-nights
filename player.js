@@ -1,68 +1,111 @@
+import { Fireball } from "./fireball.js";
+
 export class Player {
-  constructor(canvas, defaultSettings){
-    this.canvas = canvas
-    this.xPos = Math.floor(canvas.width / 2)
-    this.yPos = Math.floor(canvas.height / 2)
+  constructor(type, canvas, xPos, yPos, velocity, image) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext("2d");
+    // image
+    this.image = image;
+    this.type = type;
+    // starting positions
+    this.xPos = xPos;
+    this.yPos = yPos;
+    // default height and width
     this.width = 32;
     this.height = 32;
-    // velocity needs to be changed later based on canvas size or vice versa
-    this.velocity = 15;
-    // this.acceleration= 3;
-    this.velocityX = 0;
-    this.velocityY = 0;
-    this.ctx = canvas.getContext("2d")
-    this.draw = this.draw.bind(this)
-    this.moveLeft = this.moveLeft.bind(this)
-    this.moveDown = this.moveDown.bind(this)
-    this.moveUp = this.moveUp.bind(this)
-    this.checkBorderCollision = this.checkBorderCollision.bind(this)
+    this.velocity = velocity;
+    // previous locations
+    this.prevX = xPos;
+    this.prevY = yPos;
+    // movement and border collisions
+    this.moveLeft = this.moveLeft.bind(this);
+    this.moveDown = this.moveDown.bind(this);
+    this.moveUp = this.moveUp.bind(this);
+    this.checkBorderCollision = this.checkBorderCollision.bind(this);
+    // canvas drawings
+    this.releaseFire = this.releaseFire.bind(this);
+    this.draw = this.draw.bind(this);
+    this.firing = false;
+    this.fireball = null;
+    this.fire = this.fire.bind(this);
+    // this.createBeam = this.createBeam.bind(this);
+    this.detectHit = this.detectHit.bind(this);
   }
 
-  checkBorderCollision(){
-    if (this.xPos <= 0){
-      this.velocityX = 0
-      this.xPos = 0
-    } else if ((this.xPos + this.width) > this.canvas.width) {
-      this.velocityX = 0
-      this.xPos = this.canvas.width - this.width
+  checkBorderCollision() {
+    if (this.xPos <= 0) {
+      this.xPos = 0;
+    } else if (this.xPos + this.width > this.canvas.width) {
+      this.xPos = this.canvas.width - this.width;
     }
 
-    if (this.yPos <= 0){
-      this.velocityY = 0
-      this.yPos = 0
-    } else if ((this.yPos + this.height) > this.canvas.height) {
-      this.velocityY = 0
-      this.yPos = this.canvas.height - this.height
+    if (this.yPos <= 0) {
+      this.yPos = 0;
+    } else if (this.yPos + this.height > this.canvas.height) {
+      this.yPos = this.canvas.height - this.height;
     }
   }
 
-  moveLeft(){
-    this.velocityX += this.velocity 
-    this.ctx.clearRect(this.xPos, this.yPos, this.width, (this.height));
-    this.xPos -= this.velocity
+  detectHit(fireball) {
+    let fireballTop = fireball.yPos;
+    let fireballBottom = fireball.yPos + fireball.spriteHeight;
+    let fireballLeft = fireball.xPos;
+    let fireballRight = fireball.xPos + fireball.spriteWidth;
+
+    // zombie positions
+    let zombieTop = this.yPos;
+    let zombieBottom = this.yPos + this.height;
+    let zombieLeft = this.xPos;
+    let zombieRight = this.xPos + this.width;
+
+    let xOverlaps = zombieLeft < fireballRight && zombieRight > fireballLeft;
+    let yOverlaps = zombieTop < fireballBottom && zombieBottom > fireballTop;
+
+    let _collided = xOverlaps && yOverlaps;
+    if (_collided) {
+      return true;
+    }
+    return false;
   }
 
-  moveRight(){
-    this.velocityX += this.velocity
-    this.ctx.clearRect(this.xPos, this.yPos, this.width, (this.height));
-    this.xPos += this.velocity
+  moveLeft() {
+    this.xPos -= this.velocity;
   }
 
-  moveUp(){
-    this.velocityY += this.velocity
-    this.ctx.clearRect(this.xPos, this.yPos, this.width, (this.height));
-    this.yPos -= this.velocity
+  moveRight() {
+    this.xPos += this.velocity;
   }
 
-  moveDown(){
-    this.velocityY += this.velocity
-    this.ctx.clearRect(this.xPos, this.yPos, this.width, (this.height));
-    this.yPos += this.velocity
+  moveUp() {
+    this.yPos -= this.velocity;
   }
 
-  draw(){
-    this.checkBorderCollision()
-    this.ctx.fillStyle = "blue"
-    this.ctx.fillRect(this.xPos, this.yPos, this.width, this.height)
+  moveDown() {
+    this.yPos += this.velocity;
+  }
+
+  releaseFire() {
+    this.firing = false;
+  }
+
+  fire(direction) {
+    this.firing = true;
+    this.fireball = new Fireball(this.canvas, this.xPos, this.yPos, direction);
+  }
+
+  // moveTowards(player){
+  //   this.xPos
+  // }
+
+
+  draw() {
+    this.prevX = this.xPos;
+    this.prevY = this.yPos;
+    this.checkBorderCollision();
+    this.ctx.drawImage(this.image, 0, 0, 50, 55, this.xPos, this.yPos, 50, 55);
+    if (this.firing) {
+      this.fireball.draw();
+      this.fireball.update();
+    }
   }
 }

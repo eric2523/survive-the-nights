@@ -12,29 +12,31 @@ export class Collideable {
   }
 
   checkCollisions() {
-    for (let i = 0; i < this.collidables.length; i++) {
-      this.collidables[i].forEach((value, idx) => {
-        if (value !== 0) {
-          let topLeftX =
-            (idx % this.settings.mapWidth) * this.settings.tileWidth;
-          let topLeftY = this.canvas.height - 32 
-          // let bottomRightX = topLeftX + 32;
-          let bottomRightY = this.canvas.height
+    // for (let i = 0; i < this.collidables.length; i++) {
+      let playerTop = this.player.yPos 
+      let playerBottom = playerTop + 32 
+      let playerLeft = this.player.xPos
+      let playerRight = playerLeft + 32
+      this.collidables[0].forEach((value, idx) => {
+        if (value > 0) {
+          let tileLeft = (idx % 20) * 32
+          let tileTop = Math.floor(idx / 20) * 32;
+          let tileRight = tileLeft + 32
+          let tileBottom = tileTop + 32
+          
+          let xOverlaps = (playerLeft < tileRight) && (playerRight > tileLeft)
+          let yOverlaps = (playerTop < tileBottom) && (playerBottom > tileTop)
 
-          // check Y top
-          if (this.player.yPos <= 32) {
-            this.player.yPos = 32;
+          let _collided = xOverlaps && yOverlaps
+
+          if (_collided){
+            this.player.xPos = this.player.prevX
+            this.player.yPos = this.player.prevY
           }
-          // check Y bottom
-          if (
-            this.player.yPos + 32 >= topLeftY &&
-            this.player.yPos + 32 <= bottomRightY
-          ) {
-            this.player.yPos = topLeftY - 32
-          }
+     
         }
       });
-    }
+    // }
   }
 
   mapCollidable() {
