@@ -1,7 +1,7 @@
 import { Fireball } from "./fireball.js";
 
 const idleFrameSet = [3, 4, 5, 6, 7, 8, 81, 82, 83, 84];
-const movingFrameSet = [19, 20]
+const movingFrameSet = [20];
 
 export class Player {
   constructor(type, canvas, xPos, yPos, velocity, image) {
@@ -20,31 +20,15 @@ export class Player {
     // previous locations
     this.prevX = xPos;
     this.prevY = yPos;
-    // movement and border collisions
-    this.moveLeft = this.moveLeft.bind(this);
-    this.moveDown = this.moveDown.bind(this);
-    this.moveUp = this.moveUp.bind(this);
-    this.checkBorderCollision = this.checkBorderCollision.bind(this);
-    // canvas drawings
-    this.releaseFire = this.releaseFire.bind(this);
-    this.draw = this.draw.bind(this);
+    // fireball
     this.firing = false;
     this.fireball = null;
-    this.fire = this.fire.bind(this);
-    // this.createBeam = this.createBeam.bind(this);
-    this.detectHit = this.detectHit.bind(this);
-    this.moveTowards = this.moveTowards.bind(this);
-    //
+    // sprite animations
     this.count = 0;
     this.delay = 15;
     this.frame = 0;
     this.frameIndex = 0;
     this.frameSet = idleFrameSet;
-    this.update = this.update.bind(this);
-    this.renderSprite = this.renderSprite.bind(this);
-    //
-    this.idle = true;
-    this.moving = false;
   }
 
   checkBorderCollision() {
@@ -77,30 +61,32 @@ export class Player {
     let yOverlaps = zombieTop < fireballBottom && zombieBottom > fireballTop;
 
     let _collided = xOverlaps && yOverlaps;
-    if (_collided) {
-      return true;
-    }
+    if (_collided) return true;
     return false;
   }
 
-  moveLeft() {
-    window.clearInterval(this.interval);
-    this.xPos -= this.velocity;
+  stopMoving() {
+    this.change(idleFrameSet)
   }
 
-  moveRight() {
-    window.clearInterval(this.interval);
-    this.xPos += this.velocity;
-  }
-
-  moveUp() {
-    window.clearInterval(this.interval);
-    this.yPos -= this.velocity;
-  }
-
-  moveDown() {
-    window.clearInterval(this.interval);
-    this.yPos += this.velocity;
+  move(direction) {
+    this.change(movingFrameSet)
+    switch (direction) {
+      case "down":
+        this.yPos += this.velocity;
+        break;
+      case "up":
+        this.yPos -= this.velocity;
+        break;
+      case "right":
+        this.xPos += this.velocity;
+        break;
+      case "left":
+        this.xPos -= this.velocity;
+        break;
+      default:
+        break;
+    }
   }
 
   releaseFire() {
@@ -113,20 +99,12 @@ export class Player {
   }
 
   moveTowards(player) {
+    this.change(movingFrameSet)
     let xDiff = this.xPos - player.xPos;
     let yDiff = this.yPos - player.yPos;
 
-    if (xDiff < 0) {
-      this.xPos += 0.3;
-    } else {
-      this.xPos -= 0.3;
-    }
-
-    if (yDiff < 0) {
-      this.yPos += 0.3;
-    } else {
-      this.yPos -= 0.3;
-    }
+    (xDiff < 0) ? this.xPos += 0.3 : this.xPos -= 0.3;
+    (yDiff < 0) ? this.yPos += 0.3 : this.yPos -= 0.3;
   }
 
   change(frameSet, delay = 15) {
@@ -144,7 +122,7 @@ export class Player {
     if (this.count >= this.delay) {
       this.count = 0;
       this.frameIndex =
-        this.frameIndex == this.frameSet.length - 1 ? 0 : this.frameIndex + 1;
+        (this.frameIndex == this.frameSet.length - 1) ? 0 : this.frameIndex + 1;
       this.frame = this.frameSet[this.frameIndex];
     }
   }

@@ -30,8 +30,6 @@ export class Display {
     this.player = player
     this.tileSheet = new TileSheet(settings, canvas, floorData, image);
     this.collidable =  new Collideable(settings, collidables, canvas, image, player)
-    this.draw = this.draw.bind(this)
-    this.createBackground = this.createBackground.bind(this)
   }
 
   // need to write funciton to dynamically create canvas size 
