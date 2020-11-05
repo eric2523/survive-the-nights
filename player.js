@@ -30,6 +30,7 @@ export class Player {
     this.fire = this.fire.bind(this);
     // this.createBeam = this.createBeam.bind(this);
     this.detectHit = this.detectHit.bind(this);
+    this.moveTowards = this.moveTowards.bind(this);
   }
 
   checkBorderCollision() {
@@ -93,9 +94,22 @@ export class Player {
     this.fireball = new Fireball(this.canvas, this.xPos, this.yPos, direction);
   }
 
-  // moveTowards(player){
-  //   this.xPos
-  // }
+  moveTowards(player){
+    let xDiff = this.xPos - player.xPos 
+    let yDiff = this.yPos - player.yPos 
+
+    if (xDiff < 0){
+      this.xPos += 0.3
+    } else {
+      this.xPos -= 0.3
+    }
+
+    if (yDiff < 0){
+      this.yPos += 0.3
+    } else {
+      this.yPos -= 0.3
+    }
+  }
 
 
   draw() {
