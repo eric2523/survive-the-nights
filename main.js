@@ -13,10 +13,6 @@ window.addEventListener("DOMContentLoaded", () => {
   game.populateZombies()
   engine.start();
   
-  window.addEventListener("keypress", () => {
-    controls.handleKeyPress()
-  })
-
   window.addEventListener("keydown", () => {
     controls.handleKeyDown()
   })

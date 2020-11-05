@@ -7,7 +7,7 @@ playerImage.src = "./sprites/Char_3.png";
 export class Game {
   constructor(canvas) {
     this.canvas = canvas;
-    this.player = new Player("player", canvas, 32, 32, 32, playerImage);
+    this.player = new Player("player", canvas, 32, 32, 20, playerImage);
     this.zombies = {};
     this.display = new Display(canvas, this.player);
     this.render = this.render.bind(this);

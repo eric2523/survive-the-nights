@@ -1,47 +1,39 @@
 export class Controls {
   constructor(game) {
-    this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
-    this.game = game
-    this.handleKeyDown = this.handleKeyDown.bind(this)
+    this.game = game;
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
-  handleKeyUp(){
-    this.game.player.stopMoving()
+  handleKeyUp() {
+    this.game.player.stopMoving();
   }
 
-  handleKeyDown(){
+  handleKeyDown() {
     switch (event.keyCode) {
       case 37:
-        this.game.player.fire("left")
+        this.game.player.fire("left");
         break;
       case 38:
-        this.game.player.fire("up")
+        this.game.player.fire("up");
         break;
       case 39:
-        this.game.player.fire("right")
+        this.game.player.fire("right");
         break;
       case 40:
-        this.game.player.fire("down")
+        this.game.player.fire("down");
         break;
-      default:
+      case 83:
+        this.game.player.move("down");
         break;
-    }
-  }
-
-  handleKeyPress() {
-    switch (event.keyCode) {
-      case 115:
-        this.game.player.move("down")
+      case 87:
+        this.game.player.move("up");
         break;
-      case 119:
-        this.game.player.move("up")
+      case 65:
+        this.game.player.move("left");
         break;
-      case 97:
-        this.game.player.move("left")
-        break;
-      case 100:
-        this.game.player.move("right")
+      case 68:
+        this.game.player.move("right");
         break;
       default:
         break;
