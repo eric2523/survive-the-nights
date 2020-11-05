@@ -66,12 +66,12 @@ export class Player {
     this.firing = false;
   }
 
-  fire(mousePos) {
+  fire(direction) {
     this.firing = true;
     window.setTimeout(() => {
       this.releaseFire();
     }, 1000)  
-    this.fireball = new Fireball(this.canvas, this.xPos, this.yPos, mousePos)
+    this.fireball = new Fireball(this.canvas, this.xPos, this.yPos, direction)
   }
 
   draw() {

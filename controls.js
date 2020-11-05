@@ -1,18 +1,32 @@
 export class Controls {
   constructor(game) {
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.handleMouseMove = this.handleMouseMove.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
     this.game = game
-    this.mousePos = null;
+    this.handleKeyDown = this.handleKeyDown.bind(this)
   }
 
-  handleMouseMove(){
-    this.mousePos = [event.offsetX, event.offsetY]
-  }
-  
   handleKeyUp(){
     this.game.player.releaseFire()
+  }
+
+  handleKeyDown(){
+    switch (event.keyCode) {
+      case 37:
+        this.game.player.fire("left")
+        break;
+      case 38:
+        this.game.player.fire("up")
+        break;
+      case 39:
+        this.game.player.fire("right")
+        break;
+      case 40:
+        this.game.player.fire("down")
+        break;
+      default:
+        break;
+    }
   }
 
   handleKeyPress() {
@@ -28,9 +42,6 @@ export class Controls {
         break;
       case 100:
         this.game.player.moveRight()
-        break;
-      case 32:
-        this.game.player.fire(this.mousePos)
         break;
       default:
         break;

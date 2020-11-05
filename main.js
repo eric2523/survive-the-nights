@@ -12,14 +12,11 @@ window.addEventListener("DOMContentLoaded", () => {
   
   engine.start();
   
-  canvas.addEventListener("mousemove", () => {
-    controls.handleMouseMove()
-  })
-
   window.addEventListener("keypress", () => {
     controls.handleKeyPress()
   })
 
-  // window.addEventListener("keyup", () =>)
-
+  window.addEventListener("keydown", () => {
+    controls.handleKeyDown()
+  })
 })
