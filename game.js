@@ -4,6 +4,9 @@ import { Player } from "./player.js";
 const playerImage = new Image();
 playerImage.src = "./sprites/Char_3.png";
 
+const enemyImage = new Image();
+enemyImage.src = "./sprites/Char_4.png"
+
 export class Game {
   constructor(canvas) {
     this.canvas = canvas;
@@ -28,7 +31,7 @@ export class Game {
           randomX,
           randomY,
           32,
-          playerImage
+          enemyImage
         ),
       };
     }
