@@ -1,8 +1,12 @@
+import { Game } from "./game.js"
+import { Controls } from "./controls.js";
+
 export class Engine {
-  constructor(fps, render, update){
+  constructor(fps, canvas){
+    this.canvas = canvas
     this.fps = fps;
-    this.render = render;
-    this.update = update
+    this.game = new Game(canvas);
+    this.controls = new Controls(this.game)
     this.time = null;
     this.accumulated_time = null;
     this.animationFrameRequest = null;
@@ -10,27 +14,29 @@ export class Engine {
     this.run = this.run.bind(this);
   }
 
-  handleRun(timeStamp){
-    this.run(timeStamp)
+  handleRun(){
+    if (this.game.gameOver){
+      // debugger
+      this.stop()
+      this.restartGame();
+    } else {
+      this.run()
+    }
   }
 
-  run(timeStamp){
-    // this.accumulated_time += timeStamp - this.time 
-    // this.time = timeStamp
+  restartGame(){
+    this.game = new Game(this.canvas)
+    this.controls = new Controls(this.game)
+    this.start();
+  }
 
-    // if (this.accumulated_time >= this.fps * 3) {
-    //   this.accumulated_time = this.fps;
-    // }
-
-    // while(this.accumulated_time >= this.fps) {
-    //   this.accumulated_time -= this.fps;
-    //   this.render()
-    // }
-    this.render()
+  run(){
+    this.game.render()
     this.animationFrameRequest = window.requestAnimationFrame(this.handleRun)
   }
 
   start(){
+    this.game.populateZombies();
     this.accumulated_time = this.fps;
     this.time = window.performance.now();
     this.animation_frame_request = window.requestAnimationFrame(this.handleRun);
