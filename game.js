@@ -10,7 +10,6 @@ export class Game {
 
   render() {
     this.display.draw();
-    // this.checkCollisions(this.player, this.display)
     this.player.draw();
   }
 }

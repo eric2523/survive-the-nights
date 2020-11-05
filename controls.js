@@ -2,6 +2,7 @@ export class Controls {
   constructor(game) {
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
     this.game = game
     this.mousePos = null;
   }
@@ -10,6 +11,10 @@ export class Controls {
     this.mousePos = [event.offsetX, event.offsetY]
   }
   
+  handleKeyUp(){
+    this.game.player.releaseFire()
+  }
+
   handleKeyPress() {
     switch (event.keyCode) {
       case 115:

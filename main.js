@@ -20,4 +20,6 @@ window.addEventListener("DOMContentLoaded", () => {
     controls.handleKeyPress()
   })
 
+  // window.addEventListener("keyup", () =>)
+
 })
