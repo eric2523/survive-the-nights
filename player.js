@@ -1,11 +1,12 @@
 import { Fireball } from "./fireball.js";
 
 export class Player {
-  constructor(canvas, xPos, yPos, velocity, image) {
+  constructor(type, canvas, xPos, yPos, velocity, image) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
     // image
-    this.image = image 
+    this.image = image;
+    this.type = type;
     // starting positions
     this.xPos = xPos;
     this.yPos = yPos;
@@ -22,12 +23,13 @@ export class Player {
     this.moveUp = this.moveUp.bind(this);
     this.checkBorderCollision = this.checkBorderCollision.bind(this);
     // canvas drawings
-    this.releaseFire = this.releaseFire.bind(this)
+    this.releaseFire = this.releaseFire.bind(this);
     this.draw = this.draw.bind(this);
     this.firing = false;
     this.fireball = null;
     this.fire = this.fire.bind(this);
     // this.createBeam = this.createBeam.bind(this);
+    this.detectHit = this.detectHit.bind(this);
   }
 
   checkBorderCollision() {
@@ -44,27 +46,45 @@ export class Player {
     }
   }
 
+  detectHit(fireball) {
+    let fireballTop = fireball.yPos;
+    let fireballBottom = fireball.yPos + fireball.spriteHeight;
+    let fireballLeft = fireball.xPos;
+    let fireballRight = fireball.xPos + fireball.spriteWidth;
+
+    // zombie positions
+    let zombieTop = this.yPos;
+    let zombieBottom = this.yPos + this.height;
+    let zombieLeft = this.xPos;
+    let zombieRight = this.xPos + this.width;
+
+    let xOverlaps = zombieLeft < fireballRight && zombieRight > fireballLeft;
+    let yOverlaps = zombieTop < fireballBottom && zombieBottom > fireballTop;
+
+    let _collided = xOverlaps && yOverlaps;
+    if (_collided) {
+      return true;
+    }
+    return false;
+  }
+
   moveLeft() {
-    // this.ctx.clearRect(this.xPos, this.yPos, this.width, this.height);
     this.xPos -= this.velocity;
   }
 
   moveRight() {
-    // this.ctx.clearRect(this.xPos, this.yPos, this.width, this.height);
     this.xPos += this.velocity;
   }
 
   moveUp() {
-    // this.ctx.clearRect(this.xPos, this.yPos, this.width, this.height);
     this.yPos -= this.velocity;
   }
 
   moveDown() {
-    // this.ctx.clearRect(this.xPos, this.yPos, this.width, this.height);
     this.yPos += this.velocity;
   }
 
-  releaseFire(){
+  releaseFire() {
     this.firing = false;
   }
 
@@ -72,30 +92,18 @@ export class Player {
     this.firing = true;
     window.setTimeout(() => {
       this.releaseFire();
-    }, 1000)  
-    this.fireball = new Fireball(this.canvas, this.xPos, this.yPos, direction)
+    }, 1000);
+    this.fireball = new Fireball(this.canvas, this.xPos, this.yPos, direction);
   }
 
   draw() {
     this.prevX = this.xPos;
     this.prevY = this.yPos;
     this.checkBorderCollision();
-    this.ctx.drawImage(
-      this.image,
-      0,
-      0,
-      50,
-      55,
-      this.xPos,
-      this.yPos,
-      50,
-      55
-    );
-    // this.ctx.fillStyle = "blue";
-    // this.ctx.fillRect(this.xPos, this.yPos, this.width, this.height);
-    if (this.firing){
-      this.fireball.draw()
-      this.fireball.update()
+    this.ctx.drawImage(this.image, 0, 0, 50, 55, this.xPos, this.yPos, 50, 55);
+    if (this.firing) {
+      this.fireball.draw();
+      this.fireball.update();
     }
   }
 }

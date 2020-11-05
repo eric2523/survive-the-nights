@@ -4,11 +4,37 @@ export class Fireball {
     this.ctx = canvas.getContext("2d");
     this.xPos = xPos;
     this.yPos = yPos;
-    this.direction = direction
+    // sprite settings
+    this.spriteHeight = 26;
+    this.spriteWidth = 10;
+    this.direction = direction;
     this.image = new Image();
     this.image.src = "./sprites/Small_Fireball_10x26.png";
     this.velocity = 10;
   }
+
+  // detectHit(zombie) {
+  //   // fireball positions
+  //   let fireballTop = this.yPos;
+  //   let fireballBottom = this.yPos + this.spriteHeight;
+  //   let fireballLeft = this.xPos
+  //   let fireballRight = this.xPos + this.spriteWidth
+
+  //   // zombie positions
+  //   let zombieTop = zombie.yPos
+  //   let zombieBottom = zombie.yPos + zombie.height
+  //   let zombieLeft = zombie.xPos
+  //   let zombieRight = zombie.xPos + zombie.width
+
+    
+  //   let xOverlaps = (zombieLeft < fireballRight) && (zombieRight > fireballLeft)
+  //   let yOverlaps = (zombieTop < fireballBottom) && (zombieBottom > fireballTop)
+
+  //   let _collided = xOverlaps && yOverlaps
+  //   if (_collided){
+  //     console.log('hit')
+  //   }
+  // }
 
   update() {
     switch (this.direction) {
@@ -16,7 +42,7 @@ export class Fireball {
         this.xPos -= this.velocity;
         break;
       case "right":
-        this.xPos += this.velocity
+        this.xPos += this.velocity;
         break;
       case "up":
         this.yPos -= this.velocity;
@@ -30,6 +56,16 @@ export class Fireball {
   }
 
   draw() {
-    this.ctx.drawImage(this.image, 0, 0, 10, 26, this.xPos, this.yPos, 10, 26);
+    this.ctx.drawImage(
+      this.image,
+      0,
+      0,
+      this.spriteWidth,
+      this.spriteHeight,
+      this.xPos,
+      this.yPos,
+      this.spriteWidth,
+      this.spriteHeight
+    );
   }
 }
