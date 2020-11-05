@@ -13,29 +13,6 @@ export class Fireball {
     this.velocity = 10;
   }
 
-  // detectHit(zombie) {
-  //   // fireball positions
-  //   let fireballTop = this.yPos;
-  //   let fireballBottom = this.yPos + this.spriteHeight;
-  //   let fireballLeft = this.xPos
-  //   let fireballRight = this.xPos + this.spriteWidth
-
-  //   // zombie positions
-  //   let zombieTop = zombie.yPos
-  //   let zombieBottom = zombie.yPos + zombie.height
-  //   let zombieLeft = zombie.xPos
-  //   let zombieRight = zombie.xPos + zombie.width
-
-    
-  //   let xOverlaps = (zombieLeft < fireballRight) && (zombieRight > fireballLeft)
-  //   let yOverlaps = (zombieTop < fireballBottom) && (zombieBottom > fireballTop)
-
-  //   let _collided = xOverlaps && yOverlaps
-  //   if (_collided){
-  //     console.log('hit')
-  //   }
-  // }
-
   update() {
     switch (this.direction) {
       case "left":
