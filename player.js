@@ -1,19 +1,21 @@
 import { Fireball } from "./fireball.js";
 
 export class Player {
-  constructor(canvas, defaultSettings) {
+  constructor(canvas, xPos, yPos, velocity, image) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
+    // image
+    this.image = image 
     // starting positions
-    this.xPos = 32;
-    this.yPos = 32;
+    this.xPos = xPos;
+    this.yPos = yPos;
     // default height and width
     this.width = 32;
     this.height = 32;
-    this.velocity = 32;
+    this.velocity = velocity;
     // previous locations
-    this.prevX = 32;
-    this.prevY = 32;
+    this.prevX = xPos;
+    this.prevY = yPos;
     // movement and border collisions
     this.moveLeft = this.moveLeft.bind(this);
     this.moveDown = this.moveDown.bind(this);
@@ -43,22 +45,22 @@ export class Player {
   }
 
   moveLeft() {
-    this.ctx.clearRect(this.xPos, this.yPos, this.width, this.height);
+    // this.ctx.clearRect(this.xPos, this.yPos, this.width, this.height);
     this.xPos -= this.velocity;
   }
 
   moveRight() {
-    this.ctx.clearRect(this.xPos, this.yPos, this.width, this.height);
+    // this.ctx.clearRect(this.xPos, this.yPos, this.width, this.height);
     this.xPos += this.velocity;
   }
 
   moveUp() {
-    this.ctx.clearRect(this.xPos, this.yPos, this.width, this.height);
+    // this.ctx.clearRect(this.xPos, this.yPos, this.width, this.height);
     this.yPos -= this.velocity;
   }
 
   moveDown() {
-    this.ctx.clearRect(this.xPos, this.yPos, this.width, this.height);
+    // this.ctx.clearRect(this.xPos, this.yPos, this.width, this.height);
     this.yPos += this.velocity;
   }
 
@@ -78,9 +80,20 @@ export class Player {
     this.prevX = this.xPos;
     this.prevY = this.yPos;
     this.checkBorderCollision();
-    this.ctx.fillStyle = "blue";
-    this.ctx.fillRect(this.xPos, this.yPos, this.width, this.height);
-    if(this.firing){
+    this.ctx.drawImage(
+      this.image,
+      0,
+      0,
+      50,
+      55,
+      this.xPos,
+      this.yPos,
+      50,
+      55
+    );
+    // this.ctx.fillStyle = "blue";
+    // this.ctx.fillRect(this.xPos, this.yPos, this.width, this.height);
+    if (this.firing){
       this.fireball.draw()
       this.fireball.update()
     }

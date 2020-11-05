@@ -10,6 +10,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const controls = new Controls(game)
   const engine = new Engine(60, game.render, game.update)
   
+  game.populateZombies()
   engine.start();
   
   window.addEventListener("keypress", () => {
