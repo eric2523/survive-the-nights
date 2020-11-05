@@ -20,4 +20,9 @@ window.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("keydown", () => {
     controls.handleKeyDown()
   })
+
+  window.addEventListener("keyup", () => {
+    controls.handleKeyUp()
+  })
+
 })

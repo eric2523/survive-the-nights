@@ -7,7 +7,7 @@ export class Controls {
   }
 
   handleKeyUp(){
-    this.game.player.releaseFire()
+    this.game.player.stopMoving()
   }
 
   handleKeyDown(){
@@ -32,16 +32,16 @@ export class Controls {
   handleKeyPress() {
     switch (event.keyCode) {
       case 115:
-        this.game.player.moveDown()
+        this.game.player.move("down")
         break;
       case 119:
-        this.game.player.moveUp()
+        this.game.player.move("up")
         break;
       case 97:
-        this.game.player.moveLeft()
+        this.game.player.move("left")
         break;
       case 100:
-        this.game.player.moveRight()
+        this.game.player.move("right")
         break;
       default:
         break;

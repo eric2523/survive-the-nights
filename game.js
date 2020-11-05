@@ -42,6 +42,7 @@ export class Game {
           delete this.zombies[key];
         }
       }
+      zombie.obj.moveTowards(this.player)
       zombie.obj.draw();
     });
   }
