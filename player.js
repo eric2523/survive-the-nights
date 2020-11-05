@@ -1,5 +1,8 @@
 import { Fireball } from "./fireball.js";
 
+const idleFrameSet = [3, 4, 5, 6, 7, 8, 81, 82, 83, 84];
+const movingFrameSet = [19, 20]
+
 export class Player {
   constructor(type, canvas, xPos, yPos, velocity, image) {
     this.canvas = canvas;
@@ -31,6 +34,17 @@ export class Player {
     // this.createBeam = this.createBeam.bind(this);
     this.detectHit = this.detectHit.bind(this);
     this.moveTowards = this.moveTowards.bind(this);
+    //
+    this.count = 0;
+    this.delay = 15;
+    this.frame = 0;
+    this.frameIndex = 0;
+    this.frameSet = idleFrameSet;
+    this.update = this.update.bind(this);
+    this.renderSprite = this.renderSprite.bind(this);
+    //
+    this.idle = true;
+    this.moving = false;
   }
 
   checkBorderCollision() {
@@ -70,18 +84,22 @@ export class Player {
   }
 
   moveLeft() {
+    window.clearInterval(this.interval);
     this.xPos -= this.velocity;
   }
 
   moveRight() {
+    window.clearInterval(this.interval);
     this.xPos += this.velocity;
   }
 
   moveUp() {
+    window.clearInterval(this.interval);
     this.yPos -= this.velocity;
   }
 
   moveDown() {
+    window.clearInterval(this.interval);
     this.yPos += this.velocity;
   }
 
@@ -94,29 +112,65 @@ export class Player {
     this.fireball = new Fireball(this.canvas, this.xPos, this.yPos, direction);
   }
 
-  moveTowards(player){
-    let xDiff = this.xPos - player.xPos 
-    let yDiff = this.yPos - player.yPos 
+  moveTowards(player) {
+    let xDiff = this.xPos - player.xPos;
+    let yDiff = this.yPos - player.yPos;
 
-    if (xDiff < 0){
-      this.xPos += 0.3
+    if (xDiff < 0) {
+      this.xPos += 0.3;
     } else {
-      this.xPos -= 0.3
+      this.xPos -= 0.3;
     }
 
-    if (yDiff < 0){
-      this.yPos += 0.3
+    if (yDiff < 0) {
+      this.yPos += 0.3;
     } else {
-      this.yPos -= 0.3
+      this.yPos -= 0.3;
     }
   }
 
+  change(frameSet, delay = 15) {
+    if (this.frameSet !== frameSet) {
+      this.count = 0;
+      this.delay = 15;
+      this.frameIndex = 0;
+      this.frameSet = frameSet;
+      this.frame = this.frameSet[this.frameIndex];
+    }
+  }
+
+  update() {
+    this.count++;
+    if (this.count >= this.delay) {
+      this.count = 0;
+      this.frameIndex =
+        this.frameIndex == this.frameSet.length - 1 ? 0 : this.frameIndex + 1;
+      this.frame = this.frameSet[this.frameIndex];
+    }
+  }
+
+  renderSprite() {
+    let sourceX = (this.frame % 18) * 64;
+    let sourceY = Math.floor(this.frame / 18) * 64;
+    this.ctx.drawImage(
+      this.image,
+      sourceX,
+      sourceY,
+      64,
+      64,
+      this.xPos,
+      this.yPos,
+      64,
+      64
+    );
+  }
 
   draw() {
     this.prevX = this.xPos;
     this.prevY = this.yPos;
     this.checkBorderCollision();
-    this.ctx.drawImage(this.image, 0, 0, 50, 55, this.xPos, this.yPos, 50, 55);
+    this.update();
+    this.renderSprite();
     if (this.firing) {
       this.fireball.draw();
       this.fireball.update();
