@@ -15,18 +15,18 @@ export class Engine {
   }
 
   run(timeStamp){
-    this.accumulated_time += timeStamp - this.time 
-    this.time = timeStamp
+    // this.accumulated_time += timeStamp - this.time 
+    // this.time = timeStamp
 
-    if (this.accumulated_time >= this.fps * 3) {
-      this.accumulated_time = this.fps;
-    }
+    // if (this.accumulated_time >= this.fps * 3) {
+    //   this.accumulated_time = this.fps;
+    // }
 
-    while(this.accumulated_time >= this.fps) {
-      this.accumulated_time -= this.fps;
-      this.render()
-    }
-    
+    // while(this.accumulated_time >= this.fps) {
+    //   this.accumulated_time -= this.fps;
+    //   this.render()
+    // }
+    this.render()
     this.animationFrameRequest = window.requestAnimationFrame(this.handleRun)
   }
 

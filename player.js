@@ -90,11 +90,13 @@ export class Player {
 
   fire(direction) {
     this.firing = true;
-    window.setTimeout(() => {
-      this.releaseFire();
-    }, 1000);
     this.fireball = new Fireball(this.canvas, this.xPos, this.yPos, direction);
   }
+
+  // moveTowards(player){
+  //   this.xPos
+  // }
+
 
   draw() {
     this.prevX = this.xPos;
