@@ -18,7 +18,7 @@ export class Engine {
     if (this.game.gameOver){
       // debugger
       this.stop()
-      this.restartGame();
+      // this.restartGame();
     } else {
       this.run()
     }
@@ -37,6 +37,7 @@ export class Engine {
 
   start(){
     this.game.populateZombies();
+    this.game.display.initializeLives();
     this.accumulated_time = this.fps;
     this.time = window.performance.now();
     this.animation_frame_request = window.requestAnimationFrame(this.handleRun);
