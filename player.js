@@ -4,7 +4,7 @@ const idleFrameSet = [3, 4, 5, 6, 7, 8, 81, 82, 83, 84];
 const movingFrameSet = [20];
 
 export class Player {
-  constructor(type, canvas, xPos, yPos, velocity, image) {
+  constructor(type, canvas, xPos, yPos, velocity, image, scale) {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
     // image
@@ -31,6 +31,8 @@ export class Player {
     this.frameSet = idleFrameSet;
     // health information
     this.lives = 5
+    // 
+    this.scale = scale 
   }
 
   checkBorderCollision() {
@@ -140,8 +142,8 @@ export class Player {
       64,
       this.xPos,
       this.yPos,
-      64,
-      64
+      64 * this.scale,
+      64 * this.scale
     );
   }
 

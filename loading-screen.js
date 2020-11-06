@@ -1,5 +1,6 @@
-import { loadingScreenMap } from "./maps/loading-screen.js"
-import { TileSheet } from "./tile-sheet.js"
+import { loadingScreenMap } from "./maps/loading-screen.js";
+import { TileSheet } from "./tile-sheet.js";
+import { Player } from "./player.js";
 
 let floorData = null;
 let collidables = [];
@@ -20,20 +21,33 @@ const settings = {
 const image = new Image();
 image.src = "./maps/tileset_dungeon.png";
 
+const playerImage = new Image();
+playerImage.src = "./sprites/Char_3.png";
+
 export class LoadingScreen {
-  constructor(canvas){
-    this.canvas = canvas
-    this.ctx = canvas.getContext("2d")
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext("2d");
     this.image = new Image();
-    this.image.src = "./maps/tileset_dungeon.png"
-    this.tileSheet = new TileSheet(settings, canvas, floorData, image)
+    this.image.src = "./maps/tileset_dungeon.png";
+    this.tileSheet = new TileSheet(settings, canvas, floorData, image);
+    this.player = new Player(
+      "player",
+      canvas,
+      (canvas.width / 2) - 100,
+      canvas.height / 2,
+      20,
+      playerImage,
+      3
+    );
   }
 
-  createBackground(){
-    this.tileSheet.drawTiles()
+  createBackground() {
+    this.tileSheet.drawTiles();
   }
 
-  draw(){
-    this.createBackground()
+  draw() {
+    this.createBackground();
+    this.player.draw();
   }
 }

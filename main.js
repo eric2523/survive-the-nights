@@ -30,7 +30,7 @@ window.addEventListener("DOMContentLoaded", () => {
   play.addEventListener("click", () => {
     engine.run();
   })
-
+  
   window.addEventListener("keydown", () => {
     engine.controls.handleKeyDown()
   })
