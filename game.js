@@ -1,11 +1,32 @@
 import { Display } from "./display.js";
 import { Player } from "./player.js";
+import { mapbase1 } from "./maps/01-mapbase.js";
+
+function parseFloorData(mapbase) {
+  let parsed = {};
+  let collidables = [];
+  mapbase.layers.forEach((layer) => {
+    layer.name === "floor"
+      ? (parsed["layer"] = layer.data)
+      : collidables.push(layer.data);
+  });
+  parsed["collidables"] = collidables;
+  return parsed;
+}
+
+const settings = {
+  tileSetColumns: mapbase1.tilesets[0].columns,
+  tileHeight: mapbase1.tilesets[0].tileheight,
+  tileWidth: mapbase1.tilesets[0].tilewidth,
+  mapWidth: mapbase1.width,
+  mapHeight: mapbase1.height,
+};
 
 const playerImage = new Image();
 playerImage.src = "./sprites/Char_3.png";
 
 const enemyImage = new Image();
-enemyImage.src = "./sprites/Char_4.png"
+enemyImage.src = "./sprites/Char_4.png";
 
 export class Game {
   constructor(canvas) {
@@ -15,7 +36,15 @@ export class Game {
     this.gameOver = false;
     this.win = false;
     this.invicible = false;
-    this.display = new Display(canvas, this.player);
+    this.level = 0;
+    this.parsedSettings = parseFloorData(mapbase1);
+    this.display = new Display(
+      canvas,
+      this.player,
+      this.parsedSettings.layer,
+      this.parsedSettings.collidables,
+      settings
+    );
     this.render = this.render.bind(this);
     this.populateZombies = this.populateZombies.bind(this);
     this.drawZombies = this.drawZombies.bind(this);
@@ -44,18 +73,18 @@ export class Game {
     }
   }
 
-  _win(){
-    if (!Object.keys(this.zombies).length || !this.player.lives){
+  _win() {
+    if (!Object.keys(this.zombies).length || !this.player.lives) {
       this.gameOver = true;
       this.win = true;
     }
   }
 
-  _lose(){
-    let playerLeft = this.player.xPos
-    let playerRight = playerLeft + this.player.width
-    let playerTop = this.player.yPos
-    let playerBottom = playerTop + this.player.height
+  _lose() {
+    let playerLeft = this.player.xPos;
+    let playerRight = playerLeft + this.player.width;
+    let playerTop = this.player.yPos;
+    let playerBottom = playerTop + this.player.height;
 
     Object.values(this.zombies).forEach((zombie) => {
       let zombieTop = zombie.obj.yPos;
@@ -67,19 +96,19 @@ export class Game {
       let yOverlaps = zombieTop < playerBottom && zombieBottom > playerTop;
 
       let _collided = xOverlaps && yOverlaps;
-      if (_collided){
-        this.display.hearts.pop()
-        this.player.lives -= 1
+      if (_collided) {
+        this.display.hearts.pop();
+        this.player.lives -= 1;
         this.setInvicibility();
       }
-    })
+    });
   }
 
-  setInvicibility(){
+  setInvicibility() {
     this.invicible = true;
     window.setTimeout(() => {
-      this.invicible = false
-    }, 5000)
+      this.invicible = false;
+    }, 5000);
   }
 
   drawZombies() {
@@ -90,14 +119,14 @@ export class Game {
           delete this.zombies[key];
         }
       }
-      zombie.obj.moveTowards(this.player)
+      zombie.obj.moveTowards(this.player);
       zombie.obj.draw();
     });
   }
 
   render() {
     this._win();
-    if (!this.invicible){
+    if (!this.invicible) {
       this._lose();
     }
     this.display.draw();
