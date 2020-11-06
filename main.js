@@ -8,9 +8,15 @@ window.addEventListener("DOMContentLoaded", () => {
   
   engine.start("loading-screen");
   
+  const home = document.getElementById("home")
   const pause = document.getElementById("pause")
   const play = document.getElementById("play")
   const restart = document.getElementById("restart")
+
+  home.addEventListener("click", () => {
+    engine.stop();
+    engine.start("loading-screen")
+  })
 
   restart.addEventListener("click", () => {
     engine.restartGame();

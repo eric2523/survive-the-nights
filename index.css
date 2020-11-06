@@ -20,18 +20,18 @@ body {
   margin: 5px;
 }
 
-.fa-pause-circle, .fa-play-circle {
+.fa-pause-circle, .fa-play-circle, .fa-home {
   cursor: pointer;
   color: #B86F50;
   font-size: 40px;
   transition: color 400ms ease-in-out;
 }
 
-.fa-pause-circle:hover, .fa-play-circle:hover {
+.fa-pause-circle:hover, .fa-play-circle:hover, .fa-home:hover {
   color: white;
 }
 
-#restart, #next-level {
+#restart, #next-level, #home {
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -47,7 +47,7 @@ body {
   padding: 0 5px 0 5px;
 }
 
-#restart:hover, #next-level:hover {
+#restart:hover, #next-level:hover, #home:hover {
   color: white;
   border: 3px solid white;
 }
