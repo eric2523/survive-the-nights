@@ -13,12 +13,14 @@ export class Game {
     this.player = new Player("player", canvas, 32, 32, 20, playerImage);
     this.zombies = {};
     this.gameOver = false;
+    this.invicible = false;
     this.display = new Display(canvas, this.player);
     this.render = this.render.bind(this);
     this.populateZombies = this.populateZombies.bind(this);
     this.drawZombies = this.drawZombies.bind(this);
     this._win = this._win.bind(this);
     this._lose = this._lose.bind(this);
+    this.setInvicibility = this.setInvicibility.bind(this);
   }
 
   populateZombies() {
@@ -41,7 +43,7 @@ export class Game {
   }
 
   _win(){
-    if (!Object.keys(this.zombies).length){
+    if (!Object.keys(this.zombies).length || !this.player.lives){
       this.gameOver = true;
     }
   }
@@ -63,9 +65,18 @@ export class Game {
 
       let _collided = xOverlaps && yOverlaps;
       if (_collided){
-        this.gameOver = true
+        this.display.hearts.pop()
+        this.player.lives -= 1
+        this.setInvicibility();
       }
     })
+  }
+
+  setInvicibility(){
+    this.invicible = true;
+    window.setTimeout(() => {
+      this.invicible = false
+    }, 5000)
   }
 
   drawZombies() {
@@ -83,7 +94,9 @@ export class Game {
 
   render() {
     this._win();
-    this._lose();
+    if (!this.invicible){
+      this._lose();
+    }
     this.display.draw();
     this.player.draw();
     this.drawZombies();
