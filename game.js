@@ -18,6 +18,7 @@ export class Game {
     this.populateZombies = this.populateZombies.bind(this);
     this.drawZombies = this.drawZombies.bind(this);
     this._win = this._win.bind(this);
+    this._lose = this._lose.bind(this);
   }
 
   populateZombies() {
@@ -45,6 +46,28 @@ export class Game {
     }
   }
 
+  _lose(){
+    let playerLeft = this.player.xPos
+    let playerRight = playerLeft + this.player.width
+    let playerTop = this.player.yPos
+    let playerBottom = playerTop + this.player.height
+
+    Object.values(this.zombies).forEach((zombie) => {
+      let zombieTop = zombie.obj.yPos;
+      let zombieBottom = zombie.obj.yPos + zombie.obj.height;
+      let zombieLeft = zombie.obj.xPos;
+      let zombieRight = zombie.obj.xPos + zombie.obj.width;
+
+      let xOverlaps = zombieLeft < playerRight && zombieRight > playerLeft;
+      let yOverlaps = zombieTop < playerBottom && zombieBottom > playerTop;
+
+      let _collided = xOverlaps && yOverlaps;
+      if (_collided){
+        this.gameOver = true
+      }
+    })
+  }
+
   drawZombies() {
     Object.values(this.zombies).forEach((zombie) => {
       if (this.player.fireball) {
@@ -60,6 +83,7 @@ export class Game {
 
   render() {
     this._win();
+    this._lose();
     this.display.draw();
     this.player.draw();
     this.drawZombies();

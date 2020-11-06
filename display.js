@@ -51,9 +51,7 @@ export class Display {
   }
 
   drawLives(){
-    this.hearts.forEach((heart) => {
-      heart.draw()
-    })
+    this.hearts.forEach( heart => heart.draw())
   }
 
   createBackground() {
