@@ -26,7 +26,7 @@ body {
 .fa-play-circle,
 .fa-home {
   cursor: pointer;
-  color: #b86f50;
+  color: rgb(189, 235, 240);
   font-size: 40px;
   transition: color 400ms ease-in-out;
 }
@@ -44,8 +44,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #b86f50;
-  border: 3px solid #b86f50;
+  color: rgb(189, 235, 240);
+  border: 3px solid rgb(189, 235, 240);
   border-radius: 5px;
   transition: color 400ms ease-in-out;
   text-transform: uppercase;
