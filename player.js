@@ -35,6 +35,11 @@ export class Player {
     this.scale = scale 
   }
 
+  resetStartingPos(){
+    this.xPos = 32,
+    this.yPos = 32;
+  }
+
   checkBorderCollision() {
     if (this.xPos <= 0) {
       this.xPos = 0;

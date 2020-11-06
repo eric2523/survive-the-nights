@@ -89,6 +89,7 @@ export class Game {
     this.gameOver = false;
     this.win = false;
     this.invicible = false;
+    this.player.resetStartingPos();
   }
 
   createLevel(level) {
