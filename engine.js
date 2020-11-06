@@ -4,6 +4,7 @@ import { Controls } from "./controls.js";
 export class Engine {
   constructor(fps, canvas){
     this.canvas = canvas
+    this.ctx = canvas.getContext("2d")
     this.fps = fps;
     this.game = new Game(canvas);
     this.controls = new Controls(this.game)
@@ -31,6 +32,7 @@ export class Engine {
   }
 
   run(){
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
     this.game.render()
     this.animationFrameRequest = window.requestAnimationFrame(this.handleRun)
   }

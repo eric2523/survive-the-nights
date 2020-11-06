@@ -26,6 +26,7 @@ export class TileSheet {
         (i % this.settings.mapWidth) * this.settings.tileWidth;
       let destination_y =
         Math.floor(i / this.settings.mapWidth) * this.settings.tileHeight;
+      // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
       this.ctx.drawImage(
         this.image,
         source_x,
