@@ -1,7 +1,6 @@
 import { Display } from "./display.js";
 import { Player } from "./player.js";
-import { mapbase1 } from "./maps/01-mapbase.js";
-import { mapbase2 } from "./maps/02-mapbase.js"
+import { allMaps } from "./maps/maps-central.js";
 
 function parseFloorData(mapbase) {
   let parsed = {};
@@ -16,11 +15,11 @@ function parseFloorData(mapbase) {
 }
 
 const settings = {
-  tileSetColumns: mapbase1.tilesets[0].columns,
-  tileHeight: mapbase1.tilesets[0].tileheight,
-  tileWidth: mapbase1.tilesets[0].tilewidth,
-  mapWidth: mapbase1.width,
-  mapHeight: mapbase1.height,
+  tileSetColumns: allMaps[1].map.tilesets[0].columns,
+  tileHeight: allMaps[1].map.tilesets[0].tileheight,
+  tileWidth: allMaps[1].map.tilesets[0].tilewidth,
+  mapWidth: allMaps[1].map.width,
+  mapHeight: allMaps[1].map.height,
 };
 
 const playerImage = new Image();
@@ -37,8 +36,8 @@ export class Game {
     this.gameOver = false;
     this.win = false;
     this.invicible = false;
-    this.level = 0;
-    this.parsedSettings = parseFloorData(mapbase2);
+    this.level = 1;
+    this.parsedSettings = parseFloorData(allMaps[this.level].map);
     this.display = new Display(
       canvas,
       this.player,
@@ -46,16 +45,18 @@ export class Game {
       this.parsedSettings.collidables,
       settings
     );
-    this.render = this.render.bind(this);
+    this.zombieCount = allMaps[this.level].zombieCount
     this.populateZombies = this.populateZombies.bind(this);
     this.drawZombies = this.drawZombies.bind(this);
+    this.render = this.render.bind(this);
     this._win = this._win.bind(this);
     this._lose = this._lose.bind(this);
     this.setInvicibility = this.setInvicibility.bind(this);
+    this.createLevel = this.createLevel.bind(this);
   }
 
   populateZombies() {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < this.zombieCount; i++) {
       let randomX = Math.round(Math.random() * this.canvas.width);
       let randomY = Math.round(Math.random() * this.canvas.height);
 
@@ -77,10 +78,32 @@ export class Game {
   _win() {
     if (!Object.keys(this.zombies).length || !this.player.lives) {
       const nextBtn = document.getElementById("next-level-btn");
-      nextBtn.classList.remove("hide")
+      nextBtn.classList.remove("hide");
       this.gameOver = true;
       this.win = true;
+      this.level += 1;
     }
+  }
+
+  reset(){
+    this.gameOver = false;
+    this.win = false;
+    this.invicible = false;
+  }
+
+  createLevel(level) {
+    this.reset();
+    this.parsedSettings = parseFloorData(allMaps[level].map);
+    this.display = new Display(
+      this.canvas,
+      this.player,
+      this.parsedSettings.layer,
+      this.parsedSettings.collidables,
+      settings
+    );
+    this.display.initializeLives();
+    this.zombieCount = allMaps[level].zombieCount
+    this.populateZombies();
   }
 
   _lose() {

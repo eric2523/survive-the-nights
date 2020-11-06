@@ -15,6 +15,12 @@ window.addEventListener("DOMContentLoaded", () => {
   const restart = document.getElementById("restart");
   const nextLevel = document.getElementById("next-level-btn");
   
+  nextLevel.addEventListener("click", () => {
+    nextLevel.classList.add("hide")
+    engine.game.createLevel(engine.game.level);
+    engine.run();
+  })
+
   startGame.addEventListener("click", () => {
     startGame.classList.add("hide");
     nextLevel.classList.add("hide");

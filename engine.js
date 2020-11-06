@@ -20,7 +20,13 @@ export class Engine {
   }
 
   handleRun(){
-    (this.game.gameOver) ? this.stop() : this.run();
+    if (this.game.gameOver) {
+      this.stop();
+      this.running = false;
+    } else {
+      this.running = true;
+      this.run();
+    }
   }
 
   handleLoadingScreenRun(){
