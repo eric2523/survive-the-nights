@@ -34,8 +34,8 @@ export class LoadingScreen {
     this.player = new Player(
       "player",
       canvas,
-      (canvas.width / 2) - 100,
-      canvas.height / 2,
+      (canvas.width / 10),
+      (canvas.height / 4),
       20,
       playerImage,
       3

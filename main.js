@@ -8,12 +8,21 @@ window.addEventListener("DOMContentLoaded", () => {
   
   engine.start("loading-screen");
   
+  const startGame = document.getElementById("start-game")
   const home = document.getElementById("home")
   const pause = document.getElementById("pause")
   const play = document.getElementById("play")
   const restart = document.getElementById("restart")
 
+  startGame.addEventListener("click", () => {
+    debugger
+    startGame.classList.add("hide")
+    engine.restartGame();
+    engine.start();
+  })
+
   home.addEventListener("click", () => {
+    startGame.classList.remove("hide")
     engine.stop();
     engine.start("loading-screen")
   })
