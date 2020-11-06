@@ -16,6 +16,10 @@ body {
   display: flex;
 }
 
+#toolbar div {
+  margin: 5px;
+}
+
 .fa-pause-circle, .fa-play-circle {
   cursor: pointer;
   color: #B86F50;
