@@ -1,30 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
       src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"
       data-auto-a11y="true"
     ></script>
-  <link rel="stylesheet" href="./index.css">
-  <title>Document</title>
-</head>
-<body>
-  <div class="canvas-div">
-    <div id="toolbar">
-      <div id="pause">
-        <i class="far fa-pause-circle"></i>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="canvas-div">
+      <div id="toolbar">
+        <div id="home">
+          <i class="fas fa-home"></i>
+        </div>
+        <div id="pause">
+          <i class="far fa-pause-circle"></i>
+        </div>
+        <div id="play">
+          <i class="far fa-play-circle"></i>
+        </div>
+        <div id="restart">
+          <span>restart</span>
+        </div>
       </div>
-      <div id="play">
-        <i class="far fa-play-circle"></i>
+      <div class="next-level">
+        <div id="next-level-btn" class="hide">
+          <span>Next Level</span>
+        </div>
+        <div id="play-again-btn" class="hide">
+          <span>Play Again</span>
+        </div>
       </div>
-      <div id="restart">
-        <span>restart</span>
+      <div class="loading-screen">
+        <div id="start-game">
+          <span>Play</span>
+        </div>
       </div>
+      <canvas id="myCanvas" height="480px" width="640px"></canvas>
     </div>
-    <canvas id="myCanvas" height="480px" width="640px"></canvas>
-  </div>
-  <script type="module" src="./main.js"></script>
-</body>
+    <script type="module" src="./main.js"></script>
+  </body>
 </html>

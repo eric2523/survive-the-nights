@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  background: black;
+  background: #04071e;
+  font-family: 'Shadows Into Light', cursive;
 }
 
 .canvas-div {
@@ -10,6 +11,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
 #toolbar {
@@ -20,26 +22,33 @@ body {
   margin: 5px;
 }
 
-.fa-pause-circle, .fa-play-circle {
+.fa-pause-circle,
+.fa-play-circle,
+.fa-home {
   cursor: pointer;
-  color: #B86F50;
+  color: rgb(189, 235, 240);
   font-size: 40px;
   transition: color 400ms ease-in-out;
 }
 
-.fa-pause-circle:hover, .fa-play-circle:hover {
+.fa-pause-circle:hover,
+.fa-play-circle:hover,
+.fa-home:hover {
   color: white;
 }
 
-#restart {
+#restart,
+#next-level,
+#home {
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #B86F50;
-  border: 3px solid #B86F50;
+  color: rgb(189, 235, 240);
+  border: 3px solid rgb(189, 235, 240);
   border-radius: 5px;
   transition: color 400ms ease-in-out;
+  text-transform: uppercase;
 }
 
 #restart span {
@@ -47,7 +56,48 @@ body {
   padding: 0 5px 0 5px;
 }
 
-#restart:hover {
+#restart:hover,
+#next-level:hover,
+#home:hover {
   color: white;
   border: 3px solid white;
+}
+
+.hide {
+  display: none;
+}
+
+.loading-screen {
+  position: absolute;
+  border: 1px solid black;
+  border-radius: 50px;
+  cursor: pointer;
+  background: rgb(52, 235, 110);
+  box-shadow: 2px 3px black;
+  transition: background-color 400ms ease-in-out;
+}
+
+.loading-screen:hover{
+  background: rgb(38, 150, 73);
+}
+
+.loading-screen span {
+  font-size: 30px;
+  margin: 30px;
+  text-transform: uppercase;
+}
+
+.next-level {
+  cursor: pointer;
+  position: absolute;
+  background: rgb(52, 235, 110);
+  box-shadow: 2px 3px black;
+  border: 1px solid black;
+  border-radius: 50px;
+}
+
+.next-level span {
+  font-size: 30px;
+  margin: 30px;
+  text-transform: uppercase;
 }

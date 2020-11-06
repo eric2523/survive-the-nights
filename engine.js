@@ -1,28 +1,45 @@
 import { Game } from "./game.js"
 import { Controls } from "./controls.js";
+import { LoadingScreen } from "./loading-screen.js"
 
 export class Engine {
   constructor(fps, canvas){
     this.canvas = canvas
     this.ctx = canvas.getContext("2d")
     this.fps = fps;
-    this.game = new Game(canvas);
-    this.controls = new Controls(this.game)
+    this.game = null;
+    this.controls = null;
     this.time = null;
+    this.loadingScreen = null;
     this.accumulated_time = null;
     this.animationFrameRequest = null;
+    this.running = false;
     this.handleRun = this.handleRun.bind(this);
     this.run = this.run.bind(this);
+    this.handleLoadingScreenRun = this.handleLoadingScreenRun.bind(this);
   }
 
   handleRun(){
-    (this.game.gameOver) ? this.stop() : this.run();
+    if (this.game.gameOver) {
+      this.stop();
+      this.running = false;
+    } else {
+      this.running = true;
+      this.run();
+    }
+  }
+
+  handleLoadingScreenRun(){
+    this.loadingScreen.draw();
+    this.animationFrameRequest = window.requestAnimationFrame(this.handleLoadingScreenRun)
   }
 
   restartGame(){
     this.stop();
     this.game = new Game(this.canvas)
     this.controls = new Controls(this.game)
+    this.game.populateZombies();
+    this.game.display.initializeLives();
   }
 
   run(){
@@ -31,12 +48,16 @@ export class Engine {
     this.animationFrameRequest = window.requestAnimationFrame(this.handleRun)
   }
 
-  start(){
-    this.game.populateZombies();
-    this.game.display.initializeLives();
+  start(type){
     this.accumulated_time = this.fps;
     this.time = window.performance.now();
-    this.animation_frame_request = window.requestAnimationFrame(this.handleRun);
+    if (type === "loading-screen"){
+      this.loadingScreen = new LoadingScreen(this.canvas) 
+      this.animation_frame_request = window.requestAnimationFrame(this.handleLoadingScreenRun);
+    } else {
+      this.loadingScreen = null;
+      this.animationFrameRequest = window.requestAnimationFrame(this.handleRun)
+    }
   }
 
   stop(){
