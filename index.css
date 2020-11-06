@@ -86,3 +86,18 @@ body {
   margin: 30px;
   text-transform: uppercase;
 }
+
+.next-level {
+  cursor: pointer;
+  position: absolute;
+  background: rgb(52, 235, 110);
+  box-shadow: 2px 3px black;
+  border: 1px solid black;
+  border-radius: 50px;
+}
+
+.next-level span {
+  font-size: 30px;
+  margin: 30px;
+  text-transform: uppercase;
+}

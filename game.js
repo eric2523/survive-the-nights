@@ -1,6 +1,7 @@
 import { Display } from "./display.js";
 import { Player } from "./player.js";
 import { mapbase1 } from "./maps/01-mapbase.js";
+import { mapbase2 } from "./maps/02-mapbase.js"
 
 function parseFloorData(mapbase) {
   let parsed = {};
@@ -37,7 +38,7 @@ export class Game {
     this.win = false;
     this.invicible = false;
     this.level = 0;
-    this.parsedSettings = parseFloorData(mapbase1);
+    this.parsedSettings = parseFloorData(mapbase2);
     this.display = new Display(
       canvas,
       this.player,
@@ -75,6 +76,8 @@ export class Game {
 
   _win() {
     if (!Object.keys(this.zombies).length || !this.player.lives) {
+      const nextBtn = document.getElementById("next-level-btn");
+      nextBtn.classList.remove("hide")
       this.gameOver = true;
       this.win = true;
     }

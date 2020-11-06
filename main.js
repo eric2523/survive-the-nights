@@ -13,15 +13,18 @@ window.addEventListener("DOMContentLoaded", () => {
   const pause = document.getElementById("pause");
   const play = document.getElementById("play");
   const restart = document.getElementById("restart");
-
+  const nextLevel = document.getElementById("next-level-btn");
+  
   startGame.addEventListener("click", () => {
     startGame.classList.add("hide");
+    nextLevel.classList.add("hide");
     engine.restartGame();
     engine.running = true;
     engine.start();
   });
 
   home.addEventListener("click", () => {
+    nextLevel.classList.add("hide");
     startGame.classList.remove("hide");
     engine.stop();
     engine.running = true;
@@ -29,6 +32,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   restart.addEventListener("click", () => {
+    nextLevel.classList.add("hide");
     engine.restartGame();
     engine.running = true;
     engine.start();
