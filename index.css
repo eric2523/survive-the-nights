@@ -31,7 +31,7 @@ body {
   color: white;
 }
 
-#restart {
+#restart, #next-level {
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -47,7 +47,11 @@ body {
   padding: 0 5px 0 5px;
 }
 
-#restart:hover {
+#restart:hover, #next-level:hover {
   color: white;
   border: 3px solid white;
+}
+
+.hide {
+  display: none;
 }

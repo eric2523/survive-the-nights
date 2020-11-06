@@ -13,6 +13,7 @@ export class Game {
     this.player = new Player("player", canvas, 32, 32, 20, playerImage);
     this.zombies = {};
     this.gameOver = false;
+    this.win = false;
     this.invicible = false;
     this.display = new Display(canvas, this.player);
     this.render = this.render.bind(this);
@@ -45,6 +46,7 @@ export class Game {
   _win(){
     if (!Object.keys(this.zombies).length || !this.player.lives){
       this.gameOver = true;
+      this.win = true;
     }
   }
 

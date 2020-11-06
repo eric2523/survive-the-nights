@@ -6,7 +6,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // initialize game
   const engine = new Engine(60, canvas)
   
-  engine.start();
+  engine.start("loading-screen");
   
   const pause = document.getElementById("pause")
   const play = document.getElementById("play")
