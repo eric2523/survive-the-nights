@@ -8,6 +8,23 @@ window.addEventListener("DOMContentLoaded", () => {
   
   engine.start();
   
+  const pause = document.getElementById("pause")
+  const play = document.getElementById("play")
+  const restart = document.getElementById("restart")
+
+  restart.addEventListener("click", () => {
+    engine.restartGame();
+    engine.start();
+  })
+
+  pause.addEventListener("click", () => {
+    engine.stop()
+  })
+
+  play.addEventListener("click", () => {
+    engine.run();
+  })
+
   window.addEventListener("keydown", () => {
     engine.controls.handleKeyDown()
   })

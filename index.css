@@ -12,3 +12,38 @@ body {
   justify-content: center;
 }
 
+#toolbar {
+  display: flex;
+}
+
+.fa-pause-circle, .fa-play-circle {
+  cursor: pointer;
+  color: #B86F50;
+  font-size: 40px;
+  transition: color 400ms ease-in-out;
+}
+
+.fa-pause-circle:hover, .fa-play-circle:hover {
+  color: white;
+}
+
+#restart {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #B86F50;
+  border: 3px solid #B86F50;
+  border-radius: 5px;
+  transition: color 400ms ease-in-out;
+}
+
+#restart span {
+  font-size: 20px;
+  padding: 0 5px 0 5px;
+}
+
+#restart:hover {
+  color: white;
+  border: 3px solid white;
+}

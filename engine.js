@@ -16,19 +16,13 @@ export class Engine {
   }
 
   handleRun(){
-    if (this.game.gameOver){
-      // debugger
-      this.stop()
-      // this.restartGame();
-    } else {
-      this.run()
-    }
+    (this.game.gameOver) ? this.stop() : this.run();
   }
 
   restartGame(){
+    this.stop();
     this.game = new Game(this.canvas)
     this.controls = new Controls(this.game)
-    this.start();
   }
 
   run(){
