@@ -1,28 +1,36 @@
-import { Game } from "./game.js"
-import { Controls } from "./controls.js"
 import { Engine } from "./engine.js"
 
 const canvas = document.getElementById("myCanvas")
 
 window.addEventListener("DOMContentLoaded", () => {
   // initialize game
-  const game = new Game(canvas)
-  const controls = new Controls(game)
-  const engine = new Engine(60, game.render, game.update)
+  const engine = new Engine(60, canvas)
   
-  game.populateZombies()
   engine.start();
   
-  window.addEventListener("keypress", () => {
-    controls.handleKeyPress()
+  const pause = document.getElementById("pause")
+  const play = document.getElementById("play")
+  const restart = document.getElementById("restart")
+
+  restart.addEventListener("click", () => {
+    engine.restartGame();
+    engine.start();
+  })
+
+  pause.addEventListener("click", () => {
+    engine.stop()
+  })
+
+  play.addEventListener("click", () => {
+    engine.run();
   })
 
   window.addEventListener("keydown", () => {
-    controls.handleKeyDown()
+    engine.controls.handleKeyDown()
   })
 
   window.addEventListener("keyup", () => {
-    controls.handleKeyUp()
+    engine.controls.handleKeyUp()
   })
 
 })

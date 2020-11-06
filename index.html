@@ -3,11 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script
+      src="https://use.fontawesome.com/releases/v5.15.1/js/all.js"
+      data-auto-a11y="true"
+    ></script>
   <link rel="stylesheet" href="./index.css">
   <title>Document</title>
 </head>
 <body>
   <div class="canvas-div">
+    <div id="toolbar">
+      <div id="pause">
+        <i class="far fa-pause-circle"></i>
+      </div>
+      <div id="play">
+        <i class="far fa-play-circle"></i>
+      </div>
+      <div id="restart">
+        <span>restart</span>
+      </div>
+    </div>
     <canvas id="myCanvas" height="480px" width="640px"></canvas>
   </div>
   <script type="module" src="./main.js"></script>

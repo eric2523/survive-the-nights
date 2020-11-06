@@ -29,6 +29,8 @@ export class Player {
     this.frame = 0;
     this.frameIndex = 0;
     this.frameSet = idleFrameSet;
+    // health information
+    this.lives = 5
   }
 
   checkBorderCollision() {
