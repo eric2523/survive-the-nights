@@ -13,6 +13,7 @@ export class Engine {
     this.loadingScreen = null;
     this.accumulated_time = null;
     this.animationFrameRequest = null;
+    this.running = false;
     this.handleRun = this.handleRun.bind(this);
     this.run = this.run.bind(this);
     this.handleLoadingScreenRun = this.handleLoadingScreenRun.bind(this);

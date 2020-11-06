@@ -17,26 +17,35 @@ window.addEventListener("DOMContentLoaded", () => {
   startGame.addEventListener("click", () => {
     startGame.classList.add("hide");
     engine.restartGame();
+    engine.running = true;
     engine.start();
   });
 
   home.addEventListener("click", () => {
     startGame.classList.remove("hide");
     engine.stop();
+    engine.running = true;
     engine.start("loading-screen");
   });
 
   restart.addEventListener("click", () => {
     engine.restartGame();
+    engine.running = true;
     engine.start();
   });
 
   pause.addEventListener("click", () => {
-    engine.stop();
+    if (engine.running){
+      engine.running = false;
+      engine.stop();
+    }
   });
 
   play.addEventListener("click", () => {
-    engine.run();
+    if (!engine.running){
+      engine.running = true;
+      engine.run();
+    }
   });
 
   window.addEventListener("keydown", () => {
