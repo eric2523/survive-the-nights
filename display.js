@@ -42,7 +42,6 @@ export class Display {
   }
 
   draw() {
-    debugger
     this.createBackground();
     this.collidable.checkCollisions();
     this.collidable.mapCollidable();

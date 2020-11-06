@@ -4,10 +4,10 @@ import { mapbase2 } from "./02-mapbase.js"
 export const allMaps = {
   1: {
     map: mapbase1,
-    zombieCount: 5
+    zombieCount: 1
   },
   2: {
     map: mapbase2,
-    zombieCount: 10
+    zombieCount: 5
   }
 }

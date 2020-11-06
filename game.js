@@ -76,7 +76,7 @@ export class Game {
   }
 
   _win() {
-    if (!Object.keys(this.zombies).length || !this.player.lives) {
+    if (!Object.keys(this.zombies).length || this.player.lives <= 0) {
       const nextBtn = document.getElementById("next-level-btn");
       nextBtn.classList.remove("hide");
       this.gameOver = true;
@@ -113,7 +113,9 @@ export class Game {
     let playerTop = this.player.yPos;
     let playerBottom = playerTop + this.player.height;
 
-    Object.values(this.zombies).forEach((zombie) => {
+    const allZombies = Object.values(this.zombies)
+    for (let i = 0; i < allZombies.length; i++) {
+      let zombie = allZombies[i]
       let zombieTop = zombie.obj.yPos;
       let zombieBottom = zombie.obj.yPos + zombie.obj.height;
       let zombieLeft = zombie.obj.xPos;
@@ -127,8 +129,9 @@ export class Game {
         this.display.hearts.pop();
         this.player.lives -= 1;
         this.setInvicibility();
+        break;
       }
-    });
+    }
   }
 
   setInvicibility() {
