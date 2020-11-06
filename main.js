@@ -14,6 +14,14 @@ window.addEventListener("DOMContentLoaded", () => {
   const play = document.getElementById("play");
   const restart = document.getElementById("restart");
   const nextLevel = document.getElementById("next-level-btn");
+  const playAgain = document.getElementById("play-again-btn");
+
+  playAgain.addEventListener("click", () => {
+    playAgain.classList.add("hide");
+    engine.restartGame();
+    engine.running = true;
+    engine.start();
+  })
   
   nextLevel.addEventListener("click", () => {
     nextLevel.classList.add("hide")

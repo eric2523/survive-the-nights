@@ -37,6 +37,7 @@ export class Game {
     this.win = false;
     this.invicible = false;
     this.level = 1;
+    this.lastLevel = Object.keys(allMaps).length
     this.parsedSettings = parseFloorData(allMaps[this.level].map);
     this.display = new Display(
       canvas,
@@ -77,11 +78,16 @@ export class Game {
 
   _win() {
     if (!Object.keys(this.zombies).length || this.player.lives <= 0) {
-      const nextBtn = document.getElementById("next-level-btn");
-      nextBtn.classList.remove("hide");
+      if (this.level !== this.lastLevel){
+        const nextBtn = document.getElementById("next-level-btn");
+        nextBtn.classList.remove("hide");
+        this.level += 1;
+      } else {
+        const playAgainBtn = document.getElementById("play-again-btn");
+        playAgainBtn.classList.remove("hide")
+      }
       this.gameOver = true;
       this.win = true;
-      this.level += 1;
     }
   }
 
