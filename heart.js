@@ -3,7 +3,7 @@ export class Heart {
     this.canvas = canvas;
     this.ctx = canvas.getContext("2d");
     this.image = new Image();
-    this.image.src = "../sprites/heart_animated_1.png";
+    this.image.src = "./sprites/heart_animated_1.png";
     this.xPos = xPos;
     this.yPos = yPos;
     this.spriteWidth = 17;
