@@ -31,7 +31,9 @@ window.addEventListener("DOMContentLoaded", () => {
   })
 
   startGame.addEventListener("click", () => {
+    // debugger
     loadingScreen.classList.add("hide");
+    startGame.classList.add("hide");
     engine.restartGame();
     engine.running = true;
     engine.start();
@@ -40,6 +42,7 @@ window.addEventListener("DOMContentLoaded", () => {
   home.addEventListener("click", () => {
     nextLevel.classList.add("hide");
     loadingScreen.classList.remove("hide");
+    startGame.classList.remove("hide");
     engine.stop();
     engine.running = true;
     engine.start("loading-screen");
