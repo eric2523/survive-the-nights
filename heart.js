@@ -8,6 +8,7 @@ export class Heart {
     this.yPos = yPos;
     this.spriteWidth = 17;
     this.spriteHeight = 17;
+    this.draw = this.draw.bind(this);
   }
 
   draw() {
