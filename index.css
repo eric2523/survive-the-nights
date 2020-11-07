@@ -84,11 +84,6 @@ body {
   background: rgb(38, 150, 73);
 }
 
-/* .loading-screen span {
-  font-size: 30px;
-  text-transform: uppercase;
-} */
-
 .next-level {
   cursor: pointer;
   position: absolute;
@@ -131,7 +126,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   padding: 15px;
   background: rgb(189, 235, 240);
   border-radius: 5px;
