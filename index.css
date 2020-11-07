@@ -1,7 +1,7 @@
 body {
   margin: 0;
   background: #04071e;
-  font-family: 'Shadows Into Light', cursive;
+  font-family: "Shadows Into Light", cursive;
 }
 
 .canvas-div {
@@ -63,12 +63,7 @@ body {
   border: 3px solid white;
 }
 
-.hide {
-  display: none;
-}
-
-.loading-screen {
-  position: absolute;
+#start-game {
   border: 1px solid black;
   border-radius: 50px;
   cursor: pointer;
@@ -77,14 +72,16 @@ body {
   transition: background-color 400ms ease-in-out;
 }
 
-.loading-screen:hover{
-  background: rgb(38, 150, 73);
+.loading-screen {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.loading-screen span {
-  font-size: 30px;
-  margin: 30px;
-  text-transform: uppercase;
+#start-game:hover {
+  background: rgb(38, 150, 73);
 }
 
 .next-level {
@@ -100,4 +97,71 @@ body {
   font-size: 30px;
   margin: 30px;
   text-transform: uppercase;
+}
+
+.bio-icons {
+  cursor: pointer;
+  font-size: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.bio-icons div {
+  margin: 10px;
+}
+
+.fa-github,
+.fa-linkedin {
+  color: white;
+  transition: color 400ms ease-in-out;
+}
+
+.fa-github:hover,
+.fa-linkedin:hover {
+  color: rgb(52, 235, 110);
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 15px;
+  background: rgb(189, 235, 240);
+  border-radius: 5px;
+}
+
+.instructions h1 {
+  margin: 0;
+}
+
+.hide {
+  display: none;
+}
+
+.main-controls {
+  display: flex;
+}
+
+.instructions-info {
+  font-size: 22px;
+}
+
+.wasd {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  width: 25px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  background: rgb(191, 191, 191);
+  margin: 2px;
+}
+
+.play-btn {
+  margin: 0 60px 0 60px;
+  font-size: 30px;
 }
