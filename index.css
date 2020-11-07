@@ -10,7 +10,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   position: relative;
 }
 
@@ -78,6 +78,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  bottom: 275px;
 }
 
 #start-game:hover {
@@ -164,4 +165,16 @@ body {
 .play-btn {
   margin: 0 60px 0 60px;
   font-size: 30px;
+}
+
+.title {
+  font-family: "Kaushan Script", cursive;
+  color: rgb(250, 231, 200);
+  font-size: 45px;
+  letter-spacing: 0.06rem;
+}
+
+header {
+  display: flex;
+  justify-content: center;
 }
