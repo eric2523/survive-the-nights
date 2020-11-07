@@ -96,6 +96,7 @@ export class Game {
     this.win = false;
     this.invicible = false;
     this.player.resetStartingPos();
+    this.player.firing = false;
   }
 
   createLevel(level) {

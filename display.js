@@ -1,6 +1,6 @@
 import { TileSheet } from "./tile-sheet.js";
 import { Collideable } from "./collideables.js";
-import { Heart } from "./entities/heart.js";
+import { Heart } from "./heart.js";
 
 const image = new Image();
 image.src = "./maps/tileset_dungeon.png";
