@@ -15,7 +15,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const restart = document.getElementById("restart");
   const nextLevel = document.getElementById("next-level-btn");
   const playAgain = document.getElementById("play-again-btn");
-  const loadingScreen = document.getElementsByClassName("loading-screen")[0]
+  const instructions = document.getElementsByClassName("instructions")[0]
 
   playAgain.addEventListener("click", () => {
     playAgain.classList.add("hide");
@@ -31,8 +31,7 @@ window.addEventListener("DOMContentLoaded", () => {
   })
 
   startGame.addEventListener("click", () => {
-    // debugger
-    loadingScreen.classList.add("hide");
+    instructions.classList.add("hide");
     startGame.classList.add("hide");
     engine.restartGame();
     engine.running = true;
@@ -41,7 +40,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   home.addEventListener("click", () => {
     nextLevel.classList.add("hide");
-    loadingScreen.classList.remove("hide");
+    instructions.classList.remove("hide");
     startGame.classList.remove("hide");
     engine.stop();
     engine.running = true;

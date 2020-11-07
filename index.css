@@ -63,10 +63,6 @@ body {
   border: 3px solid white;
 }
 
-.hide {
-  display: none;
-}
-
 #start-game {
   border: 1px solid black;
   border-radius: 50px;
@@ -129,4 +125,27 @@ body {
 .fa-github:hover,
 .fa-linkedin:hover {
   color: rgb(52, 235, 110);
+}
+
+.instructions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 50px;
+  background: rgb(189, 235, 240);
+  border-radius: 5px;
+}
+
+.instructions h1 {
+  margin: 0;
+}
+
+.instructions span {
+  margin: 0;
+  font-size: 25px;
+}
+
+.hide {
+  display: none;
 }
