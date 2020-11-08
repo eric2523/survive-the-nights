@@ -32,7 +32,7 @@ window.addEventListener("DOMContentLoaded", () => {
   })
 
   startGame.addEventListener("click", () => {
-    instructions.classList.add("hide");
+    // instructions.classList.add("hide");
     // startGame.classList.add("hide");
     loadingScreen.classList.add("hide");
     engine.restartGame();
@@ -42,7 +42,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   home.addEventListener("click", () => {
     nextLevel.classList.add("hide");
-    instructions.classList.remove("hide");
+    // instructions.classList.remove("hide");
     playAgain.classList.add("hide");
     // startGame.classList.remove("hide");
     loadingScreen.classList.remove("hide");

@@ -38,7 +38,7 @@ export class LoadingScreen {
       "player",
       canvas,
       0,
-      (canvas.height / 4),
+      20,
       20,
       playerImage,
       3
@@ -47,7 +47,7 @@ export class LoadingScreen {
       "zombie",
       canvas,
       (canvas.width / 2) + (canvas.width / 5),
-      (canvas.height / 4),
+      20,
       20,
       enemyImage,
       3

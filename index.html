@@ -11,25 +11,19 @@
       href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="./index.css" />
     <title>Document</title>
   </head>
   <body>
+    <header>
+      <h1 class="title">Survive the Nights</h1>
+    </header>
     <div class="canvas-div">
-      <div id="toolbar">
-        <div id="home">
-          <i class="fas fa-home"></i>
-        </div>
-        <div id="pause">
-          <i class="far fa-pause-circle"></i>
-        </div>
-        <div id="play">
-          <i class="far fa-play-circle"></i>
-        </div>
-        <div id="restart">
-          <span>restart</span>
-        </div>
-      </div>
       <div class="next-level">
         <div id="next-level-btn" class="hide">
           <span>Next Level</span>
@@ -39,6 +33,44 @@
         </div>
       </div>
       <div class="loading-screen">
+        <div id="start-game">
+          <span class="play-btn">Play</span>
+        </div>
+        <!-- <div class="subtitle">
+          <h2>Built with</h2>
+          <div class="js-logo">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/480px-Unofficial_JavaScript_logo_2.svg.png"
+              alt="js-logo"
+            />
+          </div>
+        </div> -->
+        <div class="demo-images">
+          <div class="img-1"></div>
+          <div class="img-2"></div>
+        </div>
+      </div>
+      <div class="canvas-container">
+        <div id="toolbar">
+          <div class="btn-container">
+            <div id="home">
+              <!-- <i class="fas fa-home"></i> -->
+              <span class="toolbar-btns">Home</span>
+            </div>
+            <div id="pause">
+              <!-- <i class="far fa-pause-circle"></i> -->
+              <span class="toolbar-btns">Pause</span>
+            </div>
+            <div id="play">
+              <!-- <i class="far fa-play-circle"></i> -->
+              <span class="toolbar-btns">Resume</span>
+            </div>
+            <div id="restart">
+              <span class="toolbar-btns">restart</span>
+            </div>
+          </div>
+        </div>
+        <canvas id="myCanvas" height="480px" width="640px"></canvas>
         <div class="instructions">
           <h1>How to Play</h1>
           <span class="instructions-info">Use WASD to move</span>
@@ -59,11 +91,7 @@
           <span class="instructions-info"> 1) DON'T TOUCH THE ENEMIES </span>
           <span class="instructions-info"> 2) SHOOT THE ENEMIES </span>
         </div>
-        <div id="start-game">
-          <span class="play-btn">Play</span>
-        </div>
       </div>
-      <canvas id="myCanvas" height="480px" width="640px"></canvas>
       <div class="bio-icons">
         <div class="github">
           <a href="https://github.com/eric2523/survive-the-nights">

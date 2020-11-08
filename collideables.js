@@ -14,15 +14,15 @@ export class Collideable {
   checkCollisions() {
     for (let i = 0; i < this.collidables.length; i++) {
       let playerTop = this.player.yPos 
-      let playerBottom = playerTop + 32 
+      let playerBottom = playerTop + 40
       let playerLeft = this.player.xPos
-      let playerRight = playerLeft + 32
+      let playerRight = playerLeft + 40
       this.collidables[i].forEach((value, idx) => {
         if (value > 0) {
           let tileLeft = (idx % 20) * 32
           let tileTop = Math.floor(idx / 20) * 32;
-          let tileRight = tileLeft + 32
-          let tileBottom = tileTop + 32
+          let tileRight = tileLeft + 20
+          let tileBottom = tileTop + 20
           
           let xOverlaps = (playerLeft < tileRight) && (playerRight > tileLeft)
           let yOverlaps = (playerTop < tileBottom) && (playerBottom > tileTop)

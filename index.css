@@ -5,62 +5,35 @@ body {
 }
 
 .canvas-div {
-  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   position: relative;
 }
 
 #toolbar {
   display: flex;
-}
-
-#toolbar div {
-  margin: 5px;
-}
-
-.fa-pause-circle,
-.fa-play-circle,
-.fa-home {
-  cursor: pointer;
-  color: rgb(189, 235, 240);
-  font-size: 40px;
-  transition: color 400ms ease-in-out;
-}
-
-.fa-pause-circle:hover,
-.fa-play-circle:hover,
-.fa-home:hover {
-  color: white;
+  flex-direction: column;
+  justify-content: center;
+  background: rgb(250, 231, 200);
+  border-radius: 5px;
+  margin: 10px;
+  padding: 15px;
+  width: 15vw;
+  flex-wrap: wrap;
 }
 
 #restart,
-#next-level,
-#home {
+#home,
+#pause,
+#play {
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(189, 235, 240);
-  border: 3px solid rgb(189, 235, 240);
-  border-radius: 5px;
-  transition: color 400ms ease-in-out;
+  transition: background-color 400ms ease-in-out;
   text-transform: uppercase;
-}
-
-#restart span {
-  font-size: 20px;
-  padding: 0 5px 0 5px;
-}
-
-#restart:hover,
-#next-level:hover,
-#home:hover {
-  color: white;
-  border: 3px solid white;
 }
 
 #start-game {
@@ -70,6 +43,7 @@ body {
   background: rgb(52, 235, 110);
   box-shadow: 2px 3px black;
   transition: background-color 400ms ease-in-out;
+  margin-top: 50px;
 }
 
 .loading-screen {
@@ -77,10 +51,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  /* bottom: 20%; */
+  height: 80%;
+  top: 5%;
 }
 
-#start-game:hover {
+#start-game:hover,
+#restart:hover,
+#home:hover,
+#pause:hover,
+#play:hover {
   background: rgb(38, 150, 73);
 }
 
@@ -91,6 +72,7 @@ body {
   box-shadow: 2px 3px black;
   border: 1px solid black;
   border-radius: 50px;
+  bottom: 50%;
 }
 
 .next-level span {
@@ -126,10 +108,12 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10px;
+  margin: 10px;
   padding: 15px;
-  background: rgb(189, 235, 240);
+  background: rgb(250, 231, 200);
   border-radius: 5px;
+  width: 15vw;
+  flex-wrap: wrap;
 }
 
 .instructions h1 {
@@ -145,7 +129,7 @@ body {
 }
 
 .instructions-info {
-  font-size: 22px;
+  font-size: 17px;
 }
 
 .wasd {
@@ -162,6 +146,79 @@ body {
 }
 
 .play-btn {
-  margin: 0 60px 0 60px;
+  margin: 0px 80px 0 80px;
   font-size: 30px;
+}
+
+.canvas-container {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  font-family: "Kaushan Script", cursive;
+  color: rgb(250, 231, 200);
+  font-size: 45px;
+  letter-spacing: 0.06rem;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-container div {
+  background: rgb(52, 235, 110);
+  box-shadow: 2px 3px black;
+  border: 1px solid black;
+  border-radius: 50px;
+  margin: 10px;
+}
+
+#toolbar span {
+  font-size: 20px;
+  margin: 0 20px;
+  letter-spacing: 0.06rem;
+}
+
+.subtitle {
+  display: flex;
+  align-items: center;
+}
+
+.subtitle h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 25px;
+}
+
+.js-logo {
+  margin: 10px
+}
+
+.js-logo img{
+  height: 25px;
+  width: auto;
+}
+
+.demo-images {
+  display: flex;
+}
+
+.img-1, .img-2 {
+  width: 20vw;
+  height: 15vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid black;
+  margin: 10px;
+}
+
+.img-2 {
+  background-image: url(./demo/splash-2.png);
+}
+
+.img-1 {
+  background-image: url(./demo/splash-1.png);
 }
