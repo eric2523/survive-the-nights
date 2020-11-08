@@ -51,7 +51,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  bottom: 275px;
+  bottom: 20%;
 }
 
 #start-game:hover,
@@ -143,7 +143,7 @@ body {
 }
 
 .play-btn {
-  margin: 0 60px 0 60px;
+  margin: 0px 80px 0 80px;
   font-size: 30px;
 }
 
@@ -176,4 +176,46 @@ header {
   font-size: 20px;
   margin: 0 20px;
   letter-spacing: 0.06rem;
+}
+
+.subtitle {
+  display: flex;
+  align-items: center;
+}
+
+.subtitle h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 25px;
+}
+
+.js-logo {
+  margin: 10px
+}
+
+.js-logo img{
+  height: 25px;
+  width: auto;
+}
+
+.demo-images {
+  display: flex;
+}
+
+.img-1, .img-2 {
+  width: 20vw;
+  height: 15vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 1px solid black;
+  margin: 10px;
+}
+
+.img-2 {
+  background-image: url(./demo/splash-2.png);
+}
+
+.img-1 {
+  background-image: url(./demo/splash-1.png);
 }
