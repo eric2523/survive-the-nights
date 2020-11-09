@@ -206,8 +206,8 @@ header {
 }
 
 .img-1, .img-2 {
-  width: 20vw;
-  height: 15vw;
+  width: 15vw;
+  height: 12vw;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
