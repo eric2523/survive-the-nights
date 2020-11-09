@@ -24,6 +24,9 @@ image.src = "./maps/tileset_dungeon.png";
 const playerImage = new Image();
 playerImage.src = "./sprites/Char_3.png";
 
+const enemyImage = new Image();
+enemyImage.src = "./sprites/Char_4.png";
+
 export class LoadingScreen {
   constructor(canvas) {
     this.canvas = canvas;
@@ -34,12 +37,21 @@ export class LoadingScreen {
     this.player = new Player(
       "player",
       canvas,
-      (canvas.width / 10),
-      (canvas.height / 4),
+      0,
+      20,
       20,
       playerImage,
       3
     );
+    this.enemyPlayer = new Player(
+      "zombie",
+      canvas,
+      (canvas.width / 2) + (canvas.width / 5),
+      20,
+      20,
+      enemyImage,
+      3
+    )
   }
 
   createBackground() {
@@ -48,6 +60,7 @@ export class LoadingScreen {
 
   draw() {
     this.createBackground();
+    this.enemyPlayer.draw();
     this.player.draw();
   }
 }

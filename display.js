@@ -27,8 +27,8 @@ export class Display {
     let playerLives = this.player.lives;
     let padding = 20;
     for (let life = 0; life < playerLives; life++) {
-      let xPos = life * padding
-      let yPos = 10
+      let xPos = padding
+      let yPos = 40 + (life * padding)
       this.hearts.push(new Heart(xPos, yPos, this.canvas));
     }
   }
