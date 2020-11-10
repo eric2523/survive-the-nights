@@ -111,8 +111,9 @@ export class Player {
   }
 
   fire(direction) {
+    this.keyDown = false;
     this.firing = true;
-    this.fireball = new Fireball(this.canvas, this.xPos, this.yPos, direction);
+    this.fireball = new Fireball(this.canvas, (this.xPos + this.width / 2),( this.yPos + this.height / 2), direction);
   }
 
   moveTowards(player) {

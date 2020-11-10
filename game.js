@@ -78,7 +78,7 @@ export class Game {
 
   _win() {
     if (!Object.keys(this.zombies).length || this.player.lives <= 0) {
-      if (this.level !== this.lastLevel){
+      if (this.level !== this.lastLevel && this.player.lives > 0){
         const nextBtn = document.getElementById("next-level-btn");
         nextBtn.classList.remove("hide");
         this.level += 1;
