@@ -134,6 +134,13 @@ export class Game {
       if (_collided) {
         this.display.hearts.pop();
         this.player.lives -= 1;
+        this.player.animatingDeath = true;
+        this.player.stopMoving();
+        this.player.animateDeath();
+        window.setTimeout(() => {
+          this.player.animatingDeath = false;
+          this.player.stopMoving();
+        }, 1100)
         this.setInvicibility();
         break;
       }
@@ -149,7 +156,6 @@ export class Game {
 
   drawZombies() {
     Object.values(this.zombies).forEach((zombie) => {
-      // zombie.obj.moving = true;
       if (this.player.firing) {
         if (zombie.obj.detectHit(this.player.fireball)) {
           let key = zombie.id;

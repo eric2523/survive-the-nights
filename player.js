@@ -38,6 +38,7 @@ export class Player {
     this.keyDown = false;
     this.direction = null;
     this.moving = true;
+    this.animatingDeath = false;
   }
 
   resetStartingPos() {
