@@ -24,16 +24,16 @@ export class Controls {
         this.game.player.fire("down");
         break;
       case 83:
-        this.game.player.move("down");
+        this.game.player.changeDirection("down");
         break;
       case 87:
-        this.game.player.move("up");
+        this.game.player.changeDirection("up");
         break;
       case 65:
-        this.game.player.move("left");
+        this.game.player.changeDirection("left");
         break;
       case 68:
-        this.game.player.move("right");
+        this.game.player.changeDirection("right");
         break;
       default:
         break;

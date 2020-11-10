@@ -31,7 +31,7 @@ enemyImage.src = "./sprites/Char_4.png";
 export class Game {
   constructor(canvas) {
     this.canvas = canvas;
-    this.player = new Player("player", canvas, 32, 32, 20, playerImage, 1);
+    this.player = new Player("player", canvas, 32, 32, 2, playerImage, 1);
     this.zombies = {};
     this.gameOver = false;
     this.win = false;

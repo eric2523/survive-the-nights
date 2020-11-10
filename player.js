@@ -30,14 +30,16 @@ export class Player {
     this.frameIndex = 0;
     this.frameSet = idleFrameSet;
     // health information
-    this.lives = 5
-    // 
-    this.scale = scale 
+    this.lives = 5;
+    //
+    this.scale = scale;
+    //
+    this.keyDown = false;
+    this.direction = null;
   }
 
-  resetStartingPos(){
-    this.xPos = 32,
-    this.yPos = 32;
+  resetStartingPos() {
+    (this.xPos = 32), (this.yPos = 32);
   }
 
   checkBorderCollision() {
@@ -75,14 +77,20 @@ export class Player {
   }
 
   stopMoving() {
-    this.change(idleFrameSet)
+    this.change(idleFrameSet);
+    this.keyDown = false;
   }
 
-  move(direction) {
+  changeDirection(direction){
+    this.keyDown = true;
+    this.direction = direction  
+  }
+
+  move() {
     this.change(movingFrameSet)
-    switch (direction) {
+    switch (this.direction) {
       case "down":
-        this.yPos += this.velocity;
+          this.yPos += this.velocity;
         break;
       case "up":
         this.yPos -= this.velocity;
@@ -108,12 +116,12 @@ export class Player {
   }
 
   moveTowards(player) {
-    this.change(movingFrameSet)
+    this.change(movingFrameSet);
     let xDiff = this.xPos - player.xPos;
     let yDiff = this.yPos - player.yPos;
 
-    (xDiff < 0) ? this.xPos += 0.3 : this.xPos -= 0.3;
-    (yDiff < 0) ? this.yPos += 0.3 : this.yPos -= 0.3;
+    xDiff < 0 ? (this.xPos += 0.3) : (this.xPos -= 0.3);
+    yDiff < 0 ? (this.yPos += 0.3) : (this.yPos -= 0.3);
   }
 
   change(frameSet, delay = 15) {
@@ -131,7 +139,7 @@ export class Player {
     if (this.count >= this.delay) {
       this.count = 0;
       this.frameIndex =
-        (this.frameIndex == this.frameSet.length - 1) ? 0 : this.frameIndex + 1;
+        this.frameIndex == this.frameSet.length - 1 ? 0 : this.frameIndex + 1;
       this.frame = this.frameSet[this.frameIndex];
     }
   }
@@ -157,6 +165,9 @@ export class Player {
     this.prevY = this.yPos;
     this.checkBorderCollision();
     this.update();
+    if (this.keyDown){
+      this.move()
+    }
     this.renderSprite();
     if (this.firing) {
       this.fireball.draw();
