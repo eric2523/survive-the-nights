@@ -14,7 +14,7 @@ export class Collideable {
   checkCollisions() {
     for (let i = 0; i < this.collidables.length; i++) {
       let playerTop = this.player.yPos 
-      let playerBottom = playerTop + 40
+      let playerBottom = playerTop + 52
       let playerLeft = this.player.xPos
       let playerRight = playerLeft + 40
       this.collidables[i].forEach((value, idx) => {
