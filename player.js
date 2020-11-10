@@ -2,6 +2,7 @@ import { Fireball } from "./fireball.js";
 
 const idleFrameSet = [3, 4, 5, 6, 7, 8, 81, 82, 83, 84];
 const movingFrameSet = [20];
+const dyingFrameSet = [63, 64, 61]
 
 export class Player {
   constructor(type, canvas, xPos, yPos, velocity, image, scale) {
@@ -36,6 +37,7 @@ export class Player {
     //
     this.keyDown = false;
     this.direction = null;
+    this.moving = true;
   }
 
   resetStartingPos() {
@@ -116,6 +118,10 @@ export class Player {
     this.fireball = new Fireball(this.canvas, (this.xPos + this.width / 2),( this.yPos + this.height / 2), direction);
   }
 
+  animateDeath(){
+    this.change(dyingFrameSet, 25)
+  }
+
   moveTowards(player) {
     this.change(movingFrameSet);
     let xDiff = this.xPos - player.xPos;
@@ -128,7 +134,7 @@ export class Player {
   change(frameSet, delay = 15) {
     if (this.frameSet !== frameSet) {
       this.count = 0;
-      this.delay = 15;
+      this.delay = delay;
       this.frameIndex = 0;
       this.frameSet = frameSet;
       this.frame = this.frameSet[this.frameIndex];

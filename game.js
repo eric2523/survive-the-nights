@@ -149,13 +149,20 @@ export class Game {
 
   drawZombies() {
     Object.values(this.zombies).forEach((zombie) => {
+      // zombie.obj.moving = true;
       if (this.player.firing) {
         if (zombie.obj.detectHit(this.player.fireball)) {
           let key = zombie.id;
-          delete this.zombies[key];
+          zombie.obj.moving = false;
+          zombie.obj.animateDeath();
+          window.setTimeout(() => {
+            delete this.zombies[key];
+          }, 1000);
         }
       }
-      zombie.obj.moveTowards(this.player);
+      if (zombie.obj.moving){
+        zombie.obj.moveTowards(this.player);
+      }
       zombie.obj.draw();
     });
   }
