@@ -37,7 +37,7 @@ export class Game {
     this.win = false;
     this.invicible = false;
     this.level = 1;
-    this.lastLevel = Object.keys(allMaps).length
+    this.lastLevel = Object.keys(allMaps).length;
     this.parsedSettings = parseFloorData(allMaps[this.level].map);
     this.display = new Display(
       canvas,
@@ -46,7 +46,7 @@ export class Game {
       this.parsedSettings.collidables,
       settings
     );
-    this.zombieCount = allMaps[this.level].zombieCount
+    this.zombieCount = allMaps[this.level].zombieCount;
     this.populateZombies = this.populateZombies.bind(this);
     this.drawZombies = this.drawZombies.bind(this);
     this.render = this.render.bind(this);
@@ -60,7 +60,6 @@ export class Game {
     for (let i = 0; i < this.zombieCount; i++) {
       let randomX = Math.round(Math.random() * this.canvas.width);
       let randomY = Math.round(Math.random() * this.canvas.height);
-
       this.zombies[i] = {
         id: i,
         obj: new Player(
@@ -78,20 +77,20 @@ export class Game {
 
   _win() {
     if (!Object.keys(this.zombies).length || this.player.lives <= 0) {
-      if (this.level !== this.lastLevel && this.player.lives > 0){
+      if (this.level !== this.lastLevel && this.player.lives > 0) {
         const nextBtn = document.getElementById("next-level-btn");
         nextBtn.classList.remove("hide");
         this.level += 1;
       } else {
         const playAgainBtn = document.getElementById("play-again-btn");
-        playAgainBtn.classList.remove("hide")
+        playAgainBtn.classList.remove("hide");
       }
       this.gameOver = true;
       this.win = true;
     }
   }
 
-  reset(){
+  reset() {
     this.gameOver = false;
     this.win = false;
     this.invicible = false;
@@ -110,7 +109,7 @@ export class Game {
       settings
     );
     this.display.initializeLives();
-    this.zombieCount = allMaps[level].zombieCount
+    this.zombieCount = allMaps[level].zombieCount;
     this.populateZombies();
   }
 
@@ -120,9 +119,9 @@ export class Game {
     let playerTop = this.player.yPos;
     let playerBottom = playerTop + this.player.height;
 
-    const allZombies = Object.values(this.zombies)
+    const allZombies = Object.values(this.zombies);
     for (let i = 0; i < allZombies.length; i++) {
-      let zombie = allZombies[i]
+      let zombie = allZombies[i];
       let zombieTop = zombie.obj.yPos;
       let zombieBottom = zombie.obj.yPos + zombie.obj.height;
       let zombieLeft = zombie.obj.xPos;
@@ -150,7 +149,7 @@ export class Game {
 
   drawZombies() {
     Object.values(this.zombies).forEach((zombie) => {
-      if (this.player.fireball) {
+      if (this.player.firing) {
         if (zombie.obj.detectHit(this.player.fireball)) {
           let key = zombie.id;
           delete this.zombies[key];
