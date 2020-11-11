@@ -54,6 +54,7 @@ window.addEventListener("DOMContentLoaded", () => {
   restart.addEventListener("click", () => {
     nextLevel.classList.add("hide");
     playAgain.classList.add("hide");
+    loadingScreen.classList.add("hide");
     engine.restartGame();
     engine.running = true;
     engine.start();
