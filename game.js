@@ -47,6 +47,7 @@ export class Game {
       settings
     );
     this.zombieCount = allMaps[this.level].zombieCount;
+    this.spawnRate = allMaps[this.level].spawnRate;
     this.populateZombies = this.populateZombies.bind(this);
     this.drawZombies = this.drawZombies.bind(this);
     this.render = this.render.bind(this);
@@ -60,7 +61,7 @@ export class Game {
     if (n <= 0) {
       return null;
     }
-    
+
     let randomX = Math.round(Math.random() * this.canvas.width);
     let randomY = Math.round(Math.random() * this.canvas.height);
 
@@ -76,11 +77,10 @@ export class Game {
         1
       ),
     };
-
     if (n > 1){
       window.setTimeout(() => {
         return this.populateZombies(n - 1);
-      }, 2000);
+      }, this.spawnRate);
     }
   }
 
@@ -119,6 +119,7 @@ export class Game {
     );
     this.display.initializeLives();
     this.zombieCount = allMaps[level].zombieCount;
+    this.spawnRate = allMaps[level].spawnRate;
     this.populateZombies(this.zombieCount);
   }
 
