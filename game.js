@@ -46,6 +46,7 @@ export class Game {
       this.parsedSettings.collidables,
       settings
     );
+    this.populating = false;
     this.zombieCount = allMaps[this.level].zombieCount;
     this.spawnRate = allMaps[this.level].spawnRate;
     this.populateZombies = this.populateZombies.bind(this);
@@ -59,6 +60,7 @@ export class Game {
 
   populateZombies(n) {
     if (n <= 0) {
+      this.populating = false;
       return null;
     }
 
@@ -77,25 +79,28 @@ export class Game {
         1
       ),
     };
-    if (n > 1){
+    if (n >= 1){
       window.setTimeout(() => {
+        this.populating = true;
         return this.populateZombies(n - 1);
       }, this.spawnRate);
     }
   }
 
   _win() {
-    if (!Object.keys(this.zombies).length || this.player.lives <= 0) {
-      if (this.level !== this.lastLevel && this.player.lives > 0) {
-        const nextBtn = document.getElementById("next-level-btn");
-        nextBtn.classList.remove("hide");
-        this.level += 1;
-      } else {
-        const playAgainBtn = document.getElementById("play-again-btn");
-        playAgainBtn.classList.remove("hide");
+    if (!this.populating){
+      if (!Object.keys(this.zombies).length || this.player.lives <= 0) {
+        if (this.level !== this.lastLevel && this.player.lives > 0) {
+          const nextBtn = document.getElementById("next-level-btn");
+          nextBtn.classList.remove("hide");
+          this.level += 1;
+        } else {
+          const playAgainBtn = document.getElementById("play-again-btn");
+          playAgainBtn.classList.remove("hide");
+        }
+        this.gameOver = true;
+        this.win = true;
       }
-      this.gameOver = true;
-      this.win = true;
     }
   }
 
