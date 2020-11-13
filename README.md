@@ -1,3 +1,5 @@
+[![github-pages-icon](https://img.shields.io/badge/Hosted%20On-GitHub%20Pages-blue?)](https://eric2523.github.io/survive-the-nights/)
+![javascript-icon](https://img.shields.io/badge/Built%20With-JavaScript-yellow)
 # Survive the Nights 
 
 Survive the Nights is a 2D shooting game where the player must eliminate all enemies on the map. As the player, you can move around using WASD keys and fire a blast in any direction using arrow keys. 
