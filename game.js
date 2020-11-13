@@ -56,22 +56,31 @@ export class Game {
     this.createLevel = this.createLevel.bind(this);
   }
 
-  populateZombies() {
-    for (let i = 0; i < this.zombieCount; i++) {
-      let randomX = Math.round(Math.random() * this.canvas.width);
-      let randomY = Math.round(Math.random() * this.canvas.height);
-      this.zombies[i] = {
-        id: i,
-        obj: new Player(
-          "zombie",
-          this.canvas,
-          randomX,
-          randomY,
-          32,
-          enemyImage,
-          1
-        ),
-      };
+  populateZombies(n) {
+    if (n <= 0) {
+      return null;
+    }
+    
+    let randomX = Math.round(Math.random() * this.canvas.width);
+    let randomY = Math.round(Math.random() * this.canvas.height);
+
+    this.zombies[n] = {
+      id: n,
+      obj: new Player(
+        "zombie",
+        this.canvas,
+        randomX,
+        randomY,
+        32,
+        enemyImage,
+        1
+      ),
+    };
+
+    if (n > 1){
+      window.setTimeout(() => {
+        return this.populateZombies(n - 1);
+      }, 2000);
     }
   }
 
@@ -110,7 +119,7 @@ export class Game {
     );
     this.display.initializeLives();
     this.zombieCount = allMaps[level].zombieCount;
-    this.populateZombies();
+    this.populateZombies(this.zombieCount);
   }
 
   _lose() {
@@ -140,7 +149,7 @@ export class Game {
         window.setTimeout(() => {
           this.player.animatingDeath = false;
           this.player.stopMoving();
-        }, 1100)
+        }, 1100);
         this.setInvicibility();
         break;
       }
@@ -166,7 +175,7 @@ export class Game {
           }, 1000);
         }
       }
-      if (zombie.obj.moving){
+      if (zombie.obj.moving) {
         zombie.obj.moveTowards(this.player);
       }
       zombie.obj.draw();

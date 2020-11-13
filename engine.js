@@ -38,7 +38,7 @@ export class Engine {
     this.stop();
     this.game = new Game(this.canvas)
     this.controls = new Controls(this.game)
-    this.game.populateZombies();
+    this.game.populateZombies(this.game.zombieCount);
     this.game.display.initializeLives();
   }
 
