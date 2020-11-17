@@ -17,16 +17,18 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const muteSound = document.getElementById("mute-sound");
 
-  let playSound = false;
+  // let playSound = false;
   muteSound.addEventListener("click", () => {
-    if (backgroundMusic.paused) {
-      muteSound.children[0].textContent = "Mute"
-      playSound = true;
-      backgroundMusic.play();
-    } else {
-      muteSound.children[0].textContent = "Unmute"
-      playSound = false;
-      backgroundMusic.pause();
+    if (engine.game !== null){
+      if (backgroundMusic.paused) {
+        muteSound.children[0].textContent = "Mute"
+        engine.game.playSound = true;
+        backgroundMusic.play();
+      } else {
+        muteSound.children[0].textContent = "Unmute"
+        engine.game.playSound = false;
+        backgroundMusic.pause();
+      }
     }
   });
 
@@ -57,7 +59,7 @@ window.addEventListener("DOMContentLoaded", () => {
     engine.restartGame();
     engine.running = true;
     engine.start();
-    if (playSound){
+    if (engine.game.playSound){
       backgroundMusic.play();
     }
   });
@@ -92,7 +94,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (!engine.running) {
       engine.running = true;
       engine.run();
-      if (playSound){
+      if (engine.game.playSound){
         backgroundMusic.play();
       }
     }

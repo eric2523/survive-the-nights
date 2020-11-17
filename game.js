@@ -56,6 +56,8 @@ export class Game {
     this._lose = this._lose.bind(this);
     this.setInvicibility = this.setInvicibility.bind(this);
     this.createLevel = this.createLevel.bind(this);
+    // audio stuff
+    this.playSound = false;
   }
 
   populateZombies(n) {
