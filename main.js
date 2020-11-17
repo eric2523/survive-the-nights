@@ -13,20 +13,22 @@ window.addEventListener("DOMContentLoaded", () => {
     "https://raw.githubusercontent.com/eric2523/survive-the-nights/main/sound/2020-03-22_-_A_Bit_Of_Hope_-_David_Fesliyan.mp3";
 
   backgroundMusic.loop = true;
-  backgroundMusic.volume = 0.25;
+  backgroundMusic.volume = 0.15;
 
   const muteSound = document.getElementById("mute-sound");
 
-  let playSound = false;
+  // let playSound = false;
   muteSound.addEventListener("click", () => {
-    if (backgroundMusic.paused) {
-      muteSound.children[0].textContent = "Mute"
-      playSound = true;
-      backgroundMusic.play();
-    } else {
-      muteSound.children[0].textContent = "Unmute"
-      playSound = false;
-      backgroundMusic.pause();
+    if (engine.game !== null) {
+      if (backgroundMusic.paused) {
+        muteSound.children[0].textContent = "Mute";
+        engine.game.playSound = true;
+        backgroundMusic.play();
+      } else {
+        muteSound.children[0].textContent = "Unmute";
+        engine.game.playSound = false;
+        backgroundMusic.pause();
+      }
     }
   });
 
@@ -41,9 +43,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
   playAgain.addEventListener("click", () => {
     playAgain.classList.add("hide");
+    let prevAudioFlag = engine.game.playSound
     engine.restartGame();
     engine.running = true;
     engine.start();
+    engine.game.playSound = prevAudioFlag
   });
 
   nextLevel.addEventListener("click", () => {
@@ -54,10 +58,17 @@ window.addEventListener("DOMContentLoaded", () => {
 
   startGame.addEventListener("click", () => {
     loadingScreen.classList.add("hide");
+    let prevAudioFlag = true;
+
+    if (engine.game) {
+      prevAudioFlag = engine.game.playSound;
+    }
     engine.restartGame();
     engine.running = true;
     engine.start();
-    if (playSound){
+    engine.game.playSound = prevAudioFlag;
+    if (engine.game.playSound) {
+      muteSound.children[0].textContent = "Mute";
       backgroundMusic.play();
     }
   });
@@ -92,7 +103,7 @@ window.addEventListener("DOMContentLoaded", () => {
     if (!engine.running) {
       engine.running = true;
       engine.run();
-      if (playSound){
+      if (engine.game.playSound) {
         backgroundMusic.play();
       }
     }
