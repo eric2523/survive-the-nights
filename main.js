@@ -43,9 +43,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
   playAgain.addEventListener("click", () => {
     playAgain.classList.add("hide");
+    let prevAudioFlag = engine.game.playSound
     engine.restartGame();
     engine.running = true;
     engine.start();
+    engine.game.playSound = prevAudioFlag
   });
 
   nextLevel.addEventListener("click", () => {
@@ -56,7 +58,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   startGame.addEventListener("click", () => {
     loadingScreen.classList.add("hide");
-    let prevAudioFlag = false;
+    let prevAudioFlag = true;
 
     if (engine.game) {
       prevAudioFlag = engine.game.playSound;
