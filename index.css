@@ -27,7 +27,8 @@ body {
 #restart,
 #home,
 #pause,
-#play {
+#play,
+#mute-sound {
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -225,4 +226,8 @@ header {
 
 .img-1 {
   background-image: url(./demo/splash-1.png);
+}
+
+#mute-sound {
+  margin-top: 50px;
 }
