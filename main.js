@@ -20,12 +20,11 @@ window.addEventListener("DOMContentLoaded", () => {
   let playSound = false;
   muteSound.addEventListener("click", () => {
     if (backgroundMusic.paused) {
-      debugger
-      muteSound.innerText = "Mute"
+      muteSound.children[0].textContent = "Mute"
       playSound = true;
       backgroundMusic.play();
     } else {
-      muteSound.innerText = "Unmute"
+      muteSound.children[0].textContent = "Unmute"
       playSound = false;
       backgroundMusic.pause();
     }
@@ -38,7 +37,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const restart = document.getElementById("restart");
   const nextLevel = document.getElementById("next-level-btn");
   const playAgain = document.getElementById("play-again-btn");
-  const instructions = document.getElementsByClassName("instructions")[0];
   const loadingScreen = document.getElementsByClassName("loading-screen")[0];
 
   playAgain.addEventListener("click", () => {
@@ -55,8 +53,6 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   startGame.addEventListener("click", () => {
-    // instructions.classList.add("hide");
-    // startGame.classList.add("hide");
     loadingScreen.classList.add("hide");
     engine.restartGame();
     engine.running = true;
@@ -73,7 +69,6 @@ window.addEventListener("DOMContentLoaded", () => {
     engine.stop();
     engine.running = true;
     engine.start("loading-screen");
-    backgroundMusic.pause();
   });
 
   restart.addEventListener("click", () => {
