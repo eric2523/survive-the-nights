@@ -40,6 +40,24 @@ window.addEventListener("DOMContentLoaded", () => {
   const nextLevel = document.getElementById("next-level-btn");
   const playAgain = document.getElementById("play-again-btn");
   const loadingScreen = document.getElementsByClassName("loading-screen")[0];
+  
+  const handlePause = () => {
+    if (engine.running) {
+      engine.running = false;
+      engine.stop();
+      backgroundMusic.pause();
+    }
+  }
+
+  const handlePlay = () => {
+    if (!engine.running) {
+      engine.running = true;
+      engine.run();
+      if (engine.game.playSound) {
+        backgroundMusic.play();
+      }
+    }
+  }
 
   playAgain.addEventListener("click", () => {
     playAgain.classList.add("hide");
@@ -71,6 +89,9 @@ window.addEventListener("DOMContentLoaded", () => {
       muteSound.children[0].textContent = "Mute";
       backgroundMusic.play();
     }
+
+    pause.addEventListener("click", handlePause);
+    play.addEventListener("click", handlePlay);
   });
 
   home.addEventListener("click", () => {
@@ -80,6 +101,8 @@ window.addEventListener("DOMContentLoaded", () => {
     engine.stop();
     engine.running = true;
     engine.start("loading-screen");
+    play.removeEventListener("click", handlePlay)
+    pause.removeEventListener("click", handlePause)
   });
 
   restart.addEventListener("click", () => {
@@ -89,25 +112,27 @@ window.addEventListener("DOMContentLoaded", () => {
     engine.restartGame();
     engine.running = true;
     engine.start();
+    play.addEventListener("click", handlePlay)
+    pause.addEventListener("click", handlePause)
   });
 
-  pause.addEventListener("click", () => {
-    if (engine.running) {
-      engine.running = false;
-      engine.stop();
-      backgroundMusic.pause();
-    }
-  });
+  // pause.addEventListener("click", () => {
+  //   if (engine.running) {
+  //     engine.running = false;
+  //     engine.stop();
+  //     backgroundMusic.pause();
+  //   }
+  // });
 
-  play.addEventListener("click", () => {
-    if (!engine.running) {
-      engine.running = true;
-      engine.run();
-      if (engine.game.playSound) {
-        backgroundMusic.play();
-      }
-    }
-  });
+  // play.addEventListener("click", () => {
+  //   if (!engine.running) {
+  //     engine.running = true;
+  //     engine.run();
+  //     if (engine.game.playSound) {
+  //       backgroundMusic.play();
+  //     }
+  //   }
+  // });
 
   window.addEventListener("keydown", () => {
     engine.controls.handleKeyDown();
