@@ -116,24 +116,6 @@ window.addEventListener("DOMContentLoaded", () => {
     pause.addEventListener("click", handlePause)
   });
 
-  // pause.addEventListener("click", () => {
-  //   if (engine.running) {
-  //     engine.running = false;
-  //     engine.stop();
-  //     backgroundMusic.pause();
-  //   }
-  // });
-
-  // play.addEventListener("click", () => {
-  //   if (!engine.running) {
-  //     engine.running = true;
-  //     engine.run();
-  //     if (engine.game.playSound) {
-  //       backgroundMusic.play();
-  //     }
-  //   }
-  // });
-
   window.addEventListener("keydown", () => {
     engine.controls.handleKeyDown();
   });

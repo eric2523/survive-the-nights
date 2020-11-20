@@ -90,14 +90,20 @@ export class Game {
   }
 
   _win() {
+    const playAgainBtn = document.getElementById("play-again-btn");
+
+    if (this.player.lives <= 0){
+      this.gameOver = true;
+      playAgainBtn.classList.remove("hide")
+    }
+
     if (!this.populating){
-      if (!Object.keys(this.zombies).length || this.player.lives <= 0) {
+      if (!Object.keys(this.zombies).length) {
         if (this.level !== this.lastLevel && this.player.lives > 0) {
           const nextBtn = document.getElementById("next-level-btn");
           nextBtn.classList.remove("hide");
           this.level += 1;
         } else {
-          const playAgainBtn = document.getElementById("play-again-btn");
           playAgainBtn.classList.remove("hide");
         }
         this.gameOver = true;
